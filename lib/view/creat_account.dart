@@ -7,7 +7,7 @@ import 'package:logic_study/services/auth_service.dart';
 import 'package:get/get.dart';
 
 class Creat_account_screen extends StatefulWidget {
-  static String id = 'creat_account_screen';
+  static String id = '/creat_account_screen';
   const Creat_account_screen({super.key});
 
   @override

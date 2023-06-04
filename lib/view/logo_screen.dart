@@ -2,10 +2,10 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:logic_study/view/home_screen.dart';
-import 'package:logic_study/view/login_screen.dart';
+import 'package:logic_study/view/oldlogin.dart';
 
 class Logo_screen extends StatefulWidget {
-  static String id = 'splash_screen';
+  static String id = '/splash_screen';
   @override
   _Logo_screenState createState() => _Logo_screenState();
 }
@@ -16,7 +16,7 @@ class _Logo_screenState extends State<Logo_screen> {
     super.initState();
     // Navigate to the home screen after 2 seconds
     Timer(Duration(seconds: 1), () {
-      Navigator.pushNamed(context, Login_screen.id);
+      Navigator.pushNamed(context, oldlogin.id);
     });
   }
 

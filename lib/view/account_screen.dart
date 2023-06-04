@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:logic_study/widgets/account_cards.dart';
 
 class AccountScreen extends StatefulWidget {
-  static String id = 'accountscreen';
+  static String id = '/accountscreen';
   const AccountScreen({Key? key}) : super(key: key);
 
   @override

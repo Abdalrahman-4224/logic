@@ -9,7 +9,7 @@ import 'package:video_player/video_player.dart';
 import 'package:logic_study/services/video_services.dart';
 
 class Course_screen extends StatefulWidget {
-  static String id = 'course_screen';
+  static String id = '/course_screen';
   @override
   State<Course_screen> createState() => _Course_screenState();
 }

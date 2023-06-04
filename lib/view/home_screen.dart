@@ -5,7 +5,7 @@ import 'package:logic_study/view/video_screen.dart';
 import '../widgets/cards.dart';
 
 class Home_screen extends StatefulWidget {
-  static String id = 'home_screen';
+  static String id = '/home_screen';
   const Home_screen({Key? key}) : super(key: key);
 
   @override

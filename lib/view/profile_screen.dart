@@ -7,7 +7,7 @@ import 'package:logic_study/widgets/cards.dart';
 import 'package:logic_study/widgets/coursescreen_cards.dart';
 
 class profile_screen extends StatefulWidget {
-  static String id = 'profile_screen';
+  static String id = '/profile_screen';
   const profile_screen({super.key});
 
   @override

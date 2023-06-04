@@ -4,7 +4,7 @@ import 'package:logic_study/widgets/cards.dart';
 import 'package:logic_study/widgets/setting_screen_cards.dart';
 
 class Setting_screen extends StatelessWidget {
-  static String id = 'setting_screen';
+  static String id = '/setting_screen';
   const Setting_screen({super.key});
 
   @override
