@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 Center settingline(BuildContext context) {
@@ -32,13 +31,13 @@ GestureDetector settingbutton(String icon, String text, VoidCallback pressme) {
                   ),
                 ),
                 Text(
-                  '$text',
-                  style: TextStyle(fontSize: 18),
+                  text,
+                  style: const TextStyle(fontSize: 18),
                 ),
               ],
             )),
-            Padding(
-              padding: const EdgeInsets.all(3.0),
+            const Padding(
+              padding: EdgeInsets.all(3.0),
               child: Icon(
                 Icons.arrow_forward,
                 color: Colors.black,

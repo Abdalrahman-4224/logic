@@ -1,29 +1,26 @@
-import 'dart:convert';
-import 'package:http/http.dart' as http;
-import 'package:get/get.dart';
 //هنا ال backend من اجيبه من حسن
 
-class Video {
+class Video_Model {
   final String id;
   final String title;
-  final String thumbnailUrl;
   final String videoUrl;
+  final String imageurl;
   final int duration;
 
-  Video({
+  Video_Model({
     required this.id,
     required this.title,
-    required this.thumbnailUrl,
+    required this.imageurl,
     required this.videoUrl,
     required this.duration,
   });
 
-  factory Video.fromJson(Map<String, dynamic> json) {
-    return Video(
+  factory Video_Model.fromJson(Map<String, dynamic> json) {
+    return Video_Model(
       id: json['id'],
       title: json['title'],
-      thumbnailUrl: json['thumbnailUrl'],
       videoUrl: json['videoUrl'],
+      imageurl: json['imageurl'],
       duration: json['duration'],
     );
   }

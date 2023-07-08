@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:logic_study/widgets/cards.dart';
 import 'package:video_player/video_player.dart';
 import '../constant.dart';
 import 'package:logic_study/widgets/coursescreen_cards.dart';
@@ -56,6 +55,7 @@ class _Video_screenState extends State<Video_screen> {
     });
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: videoscreen(),

@@ -35,7 +35,7 @@ Padding courssecard(BuildContext context) {
     child: ClipRRect(
       borderRadius: BorderRadius.circular(10),
       child: Container(
-        color: Color(0xffe9e9e9),
+        color: const Color(0xffe9e9e9),
         height: MediaQuery.of(context).size.height * 0.099,
         width: MediaQuery.of(context).size.width * 0.91,
       ),
@@ -70,7 +70,7 @@ Container videoscreen() {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               IconButton(
-                icon: Icon(Icons.replay_10),
+                icon: const Icon(Icons.replay_10),
                 onPressed: () {
                   Ccontroller.seekTo(Duration(
                       seconds: Ccontroller.value.position.inSeconds - 10));
@@ -88,7 +88,7 @@ Container videoscreen() {
                       ? Icons.pause
                       : Icons.play_arrow)),
               IconButton(
-                icon: Icon(Icons.forward_10),
+                icon: const Icon(Icons.forward_10),
                 onPressed: () {
                   Ccontroller.seekTo(Duration(
                       seconds: Ccontroller.value.position.inSeconds + 10));

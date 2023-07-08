@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:logic_study/widgets/cards.dart';
+import 'package:logic_study/view/account_screen.dart';
 import 'package:logic_study/widgets/setting_screen_cards.dart';
+import 'package:get/get.dart';
 
 class Setting_screen extends StatelessWidget {
   static String id = '/setting_screen';
@@ -14,9 +14,9 @@ class Setting_screen extends StatelessWidget {
         backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.close),
+          icon: const Icon(Icons.close),
           onPressed: () {
-            Navigator.pop(context);
+            Get.back();
           },
         ),
         title: const Directionality(
@@ -35,14 +35,16 @@ class Setting_screen extends StatelessWidget {
             width: double.infinity,
           ),
           Center(child: settingline(context)),
-          Padding(
-            padding: const EdgeInsets.all(12.0),
+          const Padding(
+            padding: EdgeInsets.all(12.0),
             child: Text(
               'عام',
               style: TextStyle(fontSize: 21),
             ),
           ),
-          settingbutton('assets/icons/account.svg', 'الحساب', () {}),
+          settingbutton('assets/icons/account.svg', 'الحساب', () {
+            Get.to(const AccountScreen());
+          }),
           settingline(context),
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.03,

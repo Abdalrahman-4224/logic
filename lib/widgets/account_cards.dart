@@ -6,14 +6,14 @@ title({text = ""}) {
       alignment: Alignment.centerRight,
       margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
       child:
-          Text(text, style: TextStyle(fontSize: 18, fontFamily: 'boldMyFont')));
+          Text(text, style: const TextStyle(fontSize: 18, fontFamily: 'boldMyFont')));
 }
 
 customTextFromFiled(controller, {hint, isPassword = false}) {
   return Container(
     height: 42,
     alignment: Alignment.center,
-    margin: EdgeInsets.symmetric(horizontal: 10),
+    margin: const EdgeInsets.symmetric(horizontal: 10),
     child: Theme(
       data: ThemeData(
         primaryColor: Colors.grey,
@@ -28,7 +28,7 @@ customTextFromFiled(controller, {hint, isPassword = false}) {
         controller: controller,
         textDirection: TextDirection.rtl,
         decoration: InputDecoration(
-            contentPadding: EdgeInsets.all(5.0),
+            contentPadding: const EdgeInsets.all(5.0),
             hintTextDirection: TextDirection.rtl,
             border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8.0),

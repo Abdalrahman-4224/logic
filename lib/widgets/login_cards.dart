@@ -1,23 +1,26 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:logic_study/constant.dart';
+import 'package:logic_study/controller/creat_account_controller.dart';
 import 'cards.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:get/get.dart';
 
 Center mytextfield(BuildContext context,
-    {required String hinttext, required IconData icon}) {
+    {required String hinttext,
+    required IconData icon,
+    required ValueSetter onchanged}) {
   return Center(
     child: Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Container(
+      child: SizedBox(
         height: MediaQuery.of(context).size.height * 0.05,
         width: MediaQuery.of(context).size.width * 0.9,
         child: Directionality(
           textDirection: TextDirection.rtl,
           child: TextField(
-            onChanged: ((String value) => cemail.text = value),
+            onChanged: onchanged, // ((String value) => cemail.text = value)
             decoration: InputDecoration(
                 border: const OutlineInputBorder(),
                 prefixIcon: Icon(icon),
@@ -31,49 +34,49 @@ Center mytextfield(BuildContext context,
   );
 }
 
-class PasswordCard extends StatefulWidget {
-  final String hintText;
-  final IconData icon;
-  PasswordCard({required this.hintText, required this.icon});
-  @override
-  _PasswordCardState createState() => _PasswordCardState();
-}
-
-class _PasswordCardState extends State<PasswordCard> {
-  bool _obscureText = true;
+class passwordCard_1 extends StatelessWidget {
+  String hintext;
+  ValueSetter<String> onchanged;
+  final creat_account_controller _controller = creat_account_controller();
+  passwordCard_1({super.key, 
+    required this.hintext,
+    required this.onchanged,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Container(
+        child: SizedBox(
           height: MediaQuery.of(context).size.height * 0.05,
           width: MediaQuery.of(context).size.width * 0.9,
           child: Directionality(
-            textDirection: TextDirection.rtl,
-            child: TextField(
-              onChanged: (String value) => cpassowrd.text = value,
-              obscureText: _obscureText,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                prefixIcon: Icon(Icons.lock_outline),
-                contentPadding: EdgeInsets.symmetric(vertical: 8.0),
-                hintText: 'كلمة المرور',
-                hintStyle: TextStyle(fontFamily: 'OMNES'),
-                suffixIcon: GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      _obscureText = !_obscureText;
-                    });
-                  },
-                  child: Icon(
-                    _obscureText ? Icons.visibility : Icons.visibility_off,
+              textDirection: TextDirection.rtl,
+              child: Obx(
+                () => TextField(
+                  onChanged: onchanged,
+                  obscureText: _controller.obscureText.value,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    prefixIcon: Icon(Icons.lock_outline),
+                    contentPadding: EdgeInsets.symmetric(vertical: 8.0),
+                    hintText: hintext,
+                    hintStyle: TextStyle(fontFamily: 'OMNES'),
+                    suffixIcon: GestureDetector(
+                      onTap: () {
+                        _controller.obscureText.value =
+                            !_controller.obscureText.value;
+                      },
+                      child: Icon(
+                        _controller.obscureText.value
+                            ? Icons.visibility
+                            : Icons.visibility_off,
+                      ),
+                    ),
                   ),
                 ),
-              ),
-            ),
-          ),
+              )),
         ),
       ),
     );
@@ -150,35 +153,36 @@ Widget? LoadingIndicator(bool isloading) {
       ),
     );
   }
+  return null;
 }
-  // Center passowrd_card(BuildContext context) {
-  //   return Center(
-  //     child: Container(
-  //       height: MediaQuery.of(context).size.height * 0.05,
-  //       width: MediaQuery.of(context).size.width * 0.9,
-  //       child: Directionality(
-  //         textDirection: TextDirection.rtl,
-  //         child: TextField(
-  //           obscureText: _obscureText,
-  //           decoration: InputDecoration(
-  //             border: OutlineInputBorder(),
-  //             prefixIcon: Icon(Icons.lock_outline),
-  //             contentPadding: EdgeInsets.symmetric(vertical: 8.0),
-  //             hintText: 'كلمة المرور',
-  //             hintStyle: TextStyle(fontFamily: 'OMNES'),
-  //             suffixIcon: GestureDetector(
-  //               onTap: () {
-  //                 setState(() {
-  //                   _obscureText = !_obscureText;
-  //                 });
-  //               },
-  //               child: Icon(
-  //                 _obscureText ? Icons.visibility : Icons.visibility_off,
-  //               ),
-  //             ),
-  //           ),
-  //         ),
-  //       ),
-  //     ),
-  //   );
-  // }
+// Center passowrd_card(BuildContext context) {
+//   return Center(
+//     child: Container(
+//       height: MediaQuery.of(context).size.height * 0.05,
+//       width: MediaQuery.of(context).size.width * 0.9,
+//       child: Directionality(
+//         textDirection: TextDirection.rtl,
+//         child: TextField(
+//           obscureText: _obscureText,
+//           decoration: InputDecoration(
+//             border: OutlineInputBorder(),
+//             prefixIcon: Icon(Icons.lock_outline),
+//             contentPadding: EdgeInsets.symmetric(vertical: 8.0),
+//             hintText: 'كلمة المرور',
+//             hintStyle: TextStyle(fontFamily: 'OMNES'),
+//             suffixIcon: GestureDetector(
+//               onTap: () {
+//                 setState(() {
+//                   _obscureText = !_obscureText;
+//                 });
+//               },
+//               child: Icon(
+//                 _obscureText ? Icons.visibility : Icons.visibility_off,
+//               ),
+//             ),
+//           ),
+//         ),
+//       ),
+//     ),
+//   );
+// }

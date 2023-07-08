@@ -1,21 +1,16 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:logic_study/view/homepage_screen/home_screen.dart';
+import 'package:logic_study/view/setting_screen.dart';
 import 'package:logic_study/widgets/cards.dart';
 import 'package:logic_study/widgets/coursescreen_cards.dart';
+import 'package:get/get.dart';
 
-class profile_screen extends StatefulWidget {
+class Profile_screen extends StatelessWidget {
+  const Profile_screen({super.key});
   static String id = '/profile_screen';
-  const profile_screen({super.key});
 
-  @override
-  State<profile_screen> createState() => _profile_screenState();
-}
-
-class _profile_screenState extends State<profile_screen> {
-  static String id = 'profile_screen';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +22,9 @@ class _profile_screenState extends State<profile_screen> {
               color: Colors.black,
               Icons.settings,
             ),
-            onPressed: () {},
+            onPressed: () {
+              Get.to(Setting_screen());
+            },
           ),
           title: const Center(
             child: Directionality(
@@ -41,6 +38,21 @@ class _profile_screenState extends State<profile_screen> {
               ),
             ),
           )),
+      bottomNavigationBar: BottomAppBar(
+        child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+          under_appbar_icons('assets/icons/underappbar_account.svg', () {
+            Get.to(Profile_screen());
+          }),
+          Padding(
+            padding: const EdgeInsets.only(left: 50),
+            child: under_appbar_icons(
+                'assets/icons/underappbar_mycourses.svg', () {}),
+          ),
+          under_appbar_icons('assets/icons/underappbar_the_collage.svg', () {
+            Get.to(Home_screen());
+          }),
+        ]),
+      ),
       body: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
         Stack(
           children: [
@@ -130,3 +142,5 @@ class _profile_screenState extends State<profile_screen> {
     );
   }
 }
+
+//TODO change this to stateless

@@ -1,13 +1,13 @@
+import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:get/get.dart';
-import 'package:logic_study/view/home_screen.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 //  Services
 class AuthService {
+  FlutterSecureStorage secureStorage = const FlutterSecureStorage();
   Future<bool> loginUser(String email, String password) async {
-    final url =
-        'https://example.com/api/login'; // Replace with your API endpoint
+    const url =
+        'https://dashboard.logic-study.com/api/login'; // Replace with your API endpoint
     final response = await http.post(
       Uri.parse(url),
       body: {
@@ -17,6 +17,10 @@ class AuthService {
     );
     // Handle the response
     if (response.statusCode == 200) {
+      final jsondata = json.decode(response.body);
+      final String bearerToken = jsondata['token'];
+      secureStorage.write(key: 'bearerToken', value: bearerToken);
+
       // Successful login
       return true;
     } else {
