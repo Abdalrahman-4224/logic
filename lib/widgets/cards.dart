@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:logic_study/models/university_model.dart';
+import 'package:logic_study/view/video_screen.dart';
 
 // contentBox(context) {
 //   return Stack(
@@ -67,6 +69,76 @@ import 'package:flutter_svg/flutter_svg.dart';
 //     ],
 //   );
 // }
+Future<dynamic> universisitesChoices(
+  BuildContext context, {
+  required List<UniversitiesModel> universities,
+  required VoidCallback ontap,
+}) {
+  return showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return Stack(
+          children: [
+            Container(
+              padding: EdgeInsets.only(
+                  left: 20, top: 45 + 20, right: 20, bottom: 20),
+              margin: EdgeInsets.only(top: 45, right: 15, left: 15, bottom: 15),
+              decoration: BoxDecoration(
+                shape: BoxShape.rectangle,
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Column(children: [
+                my_text_normal_bold(
+                    'اختار الجامعة',
+                    MediaQuery.of(context).size.shortestSide * 0.07,
+                    Colors.black),
+                Expanded(
+                  child: GridView.builder(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 4, // Number of columns in the grid
+                    ),
+                    itemCount: universities.length,
+                    itemBuilder: (context, index) {
+                      return GestureDetector(
+                        onTap: ontap,
+                        child: SizedBox(
+                          height: 73.69,
+                          width: 47,
+                          child: Column(children: [
+                            CircleAvatar(
+                              radius: 40,
+                              child:
+                                  Image.network(universities[index].imageurl),
+                            ),
+                            my_text_normal(
+                                universities[index].title, 17, Colors.black)
+                          ]),
+                        ),
+                      );
+                    },
+                  ),
+                )
+              ]),
+            ),
+            Positioned(
+              left: 20,
+              right: 20,
+              child: CircleAvatar(
+                backgroundColor: Colors.white,
+                radius: 55,
+                child: ClipRRect(
+                    borderRadius: BorderRadius.all(Radius.circular(55)),
+                    child: CircleAvatar(
+                        radius: 45,
+                        backgroundColor: Color(0xffe9e9e9),
+                        child: SvgPicture.asset("assets/icons/logo.svg"))),
+              ),
+            ),
+          ],
+        );
+      });
+}
 
 Future<dynamic> modalbottomsheet_choices(
   BuildContext context, {
@@ -275,7 +347,7 @@ ClipRRect othersbutton(BuildContext context,
                 ClipRRect(
                   borderRadius: BorderRadius.circular(10),
                   child: Image.asset(
-                    imageurl,
+                    '$imageurl',
                   ),
                 ),
                 Padding(
@@ -293,8 +365,8 @@ ClipRRect othersbutton(BuildContext context,
 
 GestureDetector under_appbar_icons(String icon, VoidCallback ontap) {
   return GestureDetector(
-    onTap: ontap,
     child: SvgPicture.asset(icon),
+    onTap: ontap,
   );
 }
 
