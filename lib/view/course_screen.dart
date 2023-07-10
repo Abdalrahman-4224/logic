@@ -51,7 +51,7 @@ class _Course_screenState extends State<Course_screen> {
 
           Container(
             margin: EdgeInsets.all(10),
-            width: MediaQuery.of(context).size.width * 0.9,
+            width: 375,
             child: ListView.builder(
               itemBuilder: (context, index) {
                 final video = _controller.video[index];

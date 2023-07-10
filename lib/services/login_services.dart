@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:logic_study/constant.dart';
 
 //  Services
 class AuthService {
   FlutterSecureStorage secureStorage = const FlutterSecureStorage();
   Future<bool> loginUser(String email, String password) async {
-    const url =
-        'https://dashboard.logic-study.com/api/login'; // Replace with your API endpoint
+    const url = '$api/login'; // Replace with your API endpoint
     final response = await http.post(
       Uri.parse(url),
       body: {

@@ -39,9 +39,7 @@ class login_screen extends StatelessWidget {
                     Align(
                       alignment: Alignment.centerLeft,
                       child: Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal:
-                                MediaQuery.of(context).size.width * 0.031),
+                        padding: EdgeInsets.all(8),
                         child: TextButton(
                             onPressed: () {},
                             child: my_text_normal(

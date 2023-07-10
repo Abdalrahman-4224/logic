@@ -58,12 +58,10 @@ class Profile_screen extends StatelessWidget {
           children: [
             Column(
               children: [
-                Container(
-                  child: Image.asset(
-                    'assets/image_needed/Artboard.png',
-                    height: MediaQuery.of(context).size.height * 0.086,
-                    width: double.infinity,
-                  ),
+                Image.asset(
+                  'assets/image_needed/Artboard.png',
+                  height: 76,
+                  width: double.infinity,
                 ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.06,
@@ -93,47 +91,47 @@ class Profile_screen extends StatelessWidget {
         SizedBox(
           height: 35,
         ),
-        ClipRRect(
-          borderRadius: BorderRadius.circular(8),
-          child: Container(
-            color: Color(0xffe9e9e9),
-            height: MediaQuery.of(context).size.height * 0.088,
-            width: MediaQuery.of(context).size.width * 0.91,
-            child: Directionality(
-              textDirection: TextDirection.rtl,
-              child: Row(children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: CircleAvatar(
-                    radius: MediaQuery.of(context).size.width * 0.06,
-                    backgroundImage:
-                        AssetImage('assets/image_needed/unifersity_image.png'),
-                  ),
-                ),
-                Column(
-                  children: [
-                    Text('الجامعة',
-                        style: TextStyle(
-                          fontFamily: 'OMNES-BOLD',
-                          fontSize: 14,
-                        )),
-                    Text('الكلية',
-                        style: TextStyle(fontFamily: 'OMNES', fontSize: 12)),
-                    Text(
-                      'الفرع',
-                      style: TextStyle(fontFamily: 'OMNES', fontSize: 12),
+        Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(8),
+            child: Container(
+              color: Color(0xffe9e9e9),
+              height: 78,
+              width: 382,
+              child: Directionality(
+                textDirection: TextDirection.rtl,
+                child: Row(children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: CircleAvatar(
+                      radius: MediaQuery.of(context).size.width * 0.06,
+                      backgroundImage: AssetImage(
+                          'assets/image_needed/unifersity_image.png'),
                     ),
-                  ],
-                )
-              ]),
+                  ),
+                  Column(
+                    children: [
+                      Text('الجامعة',
+                          style: TextStyle(
+                            fontFamily: 'OMNES-BOLD',
+                            fontSize: 14,
+                          )),
+                      my_text_normal('الكلية', 12, Colors.black),
+                      my_text_normal('الفرع', 12, Colors.black),
+                    ],
+                  )
+                ]),
+              ),
             ),
           ),
         ),
         Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Text(
+          child: my_text_normal(
             'اشتراكاتك',
-            style: TextStyle(fontSize: 22),
+            22,
+            Colors.black,
           ),
         ),
         courssecard(context),

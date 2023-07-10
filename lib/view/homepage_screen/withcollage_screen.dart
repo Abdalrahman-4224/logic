@@ -39,8 +39,6 @@ class _With_collage_screenState extends State<With_collage_screen> {
                 GestureDetector(
                     onTap: () {
                       // TODO showModalBottomSheet(
-                      modalbottomsheet_choices(context,
-                          title: 'نوع الدراسه', list: thislist);
                     },
                     child: Image.asset(
                         'assets/image_needed/unifersity_image.png')),

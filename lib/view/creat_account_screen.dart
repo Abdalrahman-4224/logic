@@ -69,8 +69,7 @@ class Creat_account_screen extends StatelessWidget {
                     Visibility(
                       visible: _controller.wrongusernameentered.value,
                       child: Container(
-                        margin: EdgeInsets.only(
-                            right: MediaQuery.of(context).size.width * 0.05),
+                        margin: EdgeInsets.only(right: 8),
                         child: Align(
                             alignment: Alignment.centerRight,
                             child: my_text_normal(
@@ -90,8 +89,7 @@ class Creat_account_screen extends StatelessWidget {
                     Visibility(
                       visible: _controller.wrongemailentered.value,
                       child: Container(
-                        margin: EdgeInsets.only(
-                            right: MediaQuery.of(context).size.width * 0.05),
+                        margin: EdgeInsets.only(right: 8),
                         child: Align(
                             alignment: Alignment.centerRight,
                             child: my_text_normal(
@@ -114,8 +112,7 @@ class Creat_account_screen extends StatelessWidget {
                     Visibility(
                       visible: _controller.wrongpassowrdentered.value,
                       child: Container(
-                        margin: EdgeInsets.only(
-                            right: MediaQuery.of(context).size.width * 0.05),
+                        margin: EdgeInsets.only(right: 8),
                         child: Align(
                             alignment: Alignment.centerRight,
                             child: my_text_normal(
@@ -131,8 +128,7 @@ class Creat_account_screen extends StatelessWidget {
                     Visibility(
                       visible: _controller.dontmatch.value,
                       child: Container(
-                        margin: EdgeInsets.only(
-                            right: MediaQuery.of(context).size.width * 0.05),
+                        margin: EdgeInsets.only(right: 8),
                         child: Align(
                             alignment: Alignment.centerRight,
                             child: my_text_normal(
@@ -145,25 +141,17 @@ class Creat_account_screen extends StatelessWidget {
                           child: Row(
                             children: [
                               my_text_normal(
-                                  "بالتسجيل فانت توافق على",
-                                  MediaQuery.of(context).size.shortestSide *
-                                      0.02,
-                                  Colors.black),
+                                  "بالتسجيل فانت توافق على", 12, Colors.black),
                               GestureDetector(
                                 child: my_text_normal_bold(
                                     'الشروط والأحكام وسياسة الخصوصية',
-                                    MediaQuery.of(context).size.shortestSide *
-                                        0.02,
+                                    12,
                                     Colors.black),
                                 onTap: () {
                                   //TODO navigate to webpage
                                 },
                               ),
-                              my_text_normal(
-                                  'الخاصة بنا',
-                                  MediaQuery.of(context).size.shortestSide *
-                                      0.02,
-                                  Colors.black)
+                              my_text_normal('الخاصة بنا', 12, Colors.black)
                             ],
                           )),
                       value: _controller.isChecked.value,
@@ -201,19 +189,13 @@ class Creat_account_screen extends StatelessWidget {
                           child: Row(
                             children: [
                               my_text_normal(
-                                  'الديك حساب بالفعل',
-                                  MediaQuery.of(context).size.shortestSide *
-                                      0.018,
-                                  Colors.black),
+                                  'لديك حساب بالفعل', 12, Colors.black),
                               GestureDetector(
                                 onTap: () {
                                   Get.back();
                                 },
                                 child: my_text_normal_bold(
-                                    'سجل الدخول',
-                                    MediaQuery.of(context).size.shortestSide *
-                                        0.018,
-                                    Colors.blue),
+                                    'سجل الدخول', 12, Colors.blue),
                               )
                             ],
                           ),

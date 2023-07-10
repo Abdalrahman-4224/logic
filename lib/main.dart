@@ -16,7 +16,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 void main() async {
   DartVLC.initialize();
-  await FlutterWindowManager.addFlags(FlutterWindowManager.FLAG_SECURE);
+  // await FlutterWindowManager.addFlags(FlutterWindowManager.FLAG_SECURE);
   runApp(MyApp());
 }
 
@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
           const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
         ],
       ),
-      home: new_homepage_screen(),
+      home: login_screen(),
       getPages: [
         GetPage(name: Home_screen.id, page: () => Home_screen()),
         GetPage(name: Course_screen.id, page: () => const Course_screen()),

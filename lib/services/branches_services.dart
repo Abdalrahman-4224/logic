@@ -1,25 +1,23 @@
 import 'dart:convert';
 
+import 'package:logic_study/models/branches_model.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 import 'package:logic_study/constant.dart';
-import 'package:logic_study/models/colleges_model.dart';
-import 'package:logic_study/models/courses_model.dart';
 import 'package:http/http.dart' as http;
-import 'package:flutter/material.dart';
 
-class CollegesServices {
+class BranchesServices {
   FlutterSecureStorage securestorage = FlutterSecureStorage();
-  Future<RxList<Colleges_model>> fetchcolleges() async {
-    final url = Uri.parse('$api/colleage');
+  Future<RxList<BranchesModel>> fetchBranches() async {
+    final url = Uri.parse('$api/branchs');
     final token = await securestorage.read(key: 'token');
     final headers = {'Authorization': 'Bearer $token'};
     final response = await http.get(url, headers: headers);
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body) as RxList;
       final colleges =
-          data.map((dynamic json) => Colleges_model.fromjson(json)).toList();
-      final collegeRx = RxList<Colleges_model>(colleges);
+          data.map((dynamic json) => BranchesModel.fromjson(json)).toList();
+      final collegeRx = RxList<BranchesModel>(colleges);
       return collegeRx;
     } else {
       throw Exception('Failed to load videos');

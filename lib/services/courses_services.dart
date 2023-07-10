@@ -2,13 +2,14 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:get/get.dart';
+import 'package:logic_study/constant.dart';
 import 'package:logic_study/models/courses_model.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class Courseservices {
   FlutterSecureStorage securestorage = FlutterSecureStorage();
   Future<RxList<Course_model>> fetchcourses() async {
-    final url = Uri.parse('https://dashboard.logic-study.com/api/course');
+    final url = Uri.parse('$api/course');
     final token = await securestorage.read(key: 'token');
     final headers = {'Authorization': 'Bearer $token'};
     final response = await http.get(url, headers: headers);

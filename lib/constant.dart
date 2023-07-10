@@ -5,6 +5,7 @@ String vselectedResolution = '480p';
 List<String> vresolutions = ['480p', '720p', '1080p'];
 VideoPlayerController Ccontroller = VideoPlayerController.network(Curl);
 String Cid = '';
+const String api = 'https://dashboard.logic-study.com/api';
 
 class ConstantVars {
   static String username = "";

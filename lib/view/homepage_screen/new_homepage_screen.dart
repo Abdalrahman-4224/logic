@@ -63,7 +63,7 @@ class new_homepage_screen extends StatelessWidget {
               height: MediaQuery.of(context).size.height * 0.75,
               child: ListView.builder(
                 itemBuilder: (context, index) {
-                  final course = _courseController.courses[index];
+                  dynamic course = _courseController.courses[index];
                   return othersbutton(
                     context,
                     title: course.title,

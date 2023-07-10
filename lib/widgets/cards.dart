@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:logic_study/models/university_model.dart';
 import 'package:logic_study/view/video_screen.dart';
+import 'package:logic_study/models/colleges_model.dart';
+import 'package:logic_study/models/branches_model.dart';
 
 // contentBox(context) {
 //   return Stack(
@@ -89,10 +91,7 @@ Future<dynamic> universisitesChoices(
                 borderRadius: BorderRadius.circular(20),
               ),
               child: Column(children: [
-                my_text_normal_bold(
-                    'اختار الجامعة',
-                    MediaQuery.of(context).size.shortestSide * 0.07,
-                    Colors.black),
+                my_text_normal_bold('اختار الجامعة', 20, Colors.black),
                 Expanded(
                   child: GridView.builder(
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -140,11 +139,8 @@ Future<dynamic> universisitesChoices(
       });
 }
 
-Future<dynamic> modalbottomsheet_choices(
-  BuildContext context, {
-  required String title,
-  required List list,
-}) {
+Future<dynamic> coolegeschoices(BuildContext context,
+    {required List<Colleges_model> choices}) {
   return showModalBottomSheet(
       elevation: 0,
       backgroundColor: Colors.transparent,
@@ -165,27 +161,89 @@ Future<dynamic> modalbottomsheet_choices(
                 borderRadius: BorderRadius.circular(20),
               ),
               child: Column(children: [
-                my_text_normal_bold(
-                    title,
-                    MediaQuery.of(context).size.shortestSide * 0.07,
-                    Colors.black),
+                my_text_normal_bold('اختَر الكُلية', 20, Colors.black),
                 Expanded(
                   child: ListView.builder(
-                    itemCount: list.length,
+                    itemCount: choices.length,
                     itemBuilder: (context, index) {
                       return ClipRRect(
                         borderRadius: BorderRadius.all(Radius.circular(10)),
                         child: Container(
                             margin: EdgeInsets.only(top: 5, bottom: 5),
                             color: Color(0xffe9e9e9),
-                            height: MediaQuery.of(context).size.height * 0.065,
-                            width: MediaQuery.of(context).size.width * 0.7,
+                            height: 420,
+                            width: 390,
                             child: TextButton(
                               onPressed: () {},
                               child: my_text_normal_bold(
-                                  '${list[index]}',
-                                  MediaQuery.of(context).size.shortestSide *
-                                      0.05,
+                                  choices[index].collegetitle,
+                                  20,
+                                  Colors.black),
+                            )),
+                      );
+                    },
+                  ),
+                )
+              ]),
+            ),
+            Positioned(
+              left: 20,
+              right: 20,
+              child: CircleAvatar(
+                backgroundColor: Colors.white,
+                radius: 55,
+                child: ClipRRect(
+                    borderRadius: BorderRadius.all(Radius.circular(55)),
+                    child: CircleAvatar(
+                        radius: 45,
+                        backgroundColor: Color(0xffe9e9e9),
+                        child: SvgPicture.asset("assets/icons/logo.svg"))),
+              ),
+            ),
+          ],
+        );
+      });
+}
+
+Future<dynamic> brancheschoices(BuildContext context,
+    {required List<BranchesModel> branches}) {
+  return showModalBottomSheet(
+      elevation: 0,
+      backgroundColor: Colors.transparent,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+      ),
+      context: context,
+      builder: (BuildContext context) {
+        return Stack(
+          children: [
+            Container(
+              padding: EdgeInsets.only(
+                  left: 20, top: 45 + 20, right: 20, bottom: 20),
+              margin: EdgeInsets.only(top: 45, right: 15, left: 15, bottom: 15),
+              decoration: BoxDecoration(
+                shape: BoxShape.rectangle,
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Column(children: [
+                my_text_normal_bold('اختَر الفرع', 20, Colors.black),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: branches.length,
+                    itemBuilder: (context, index) {
+                      return ClipRRect(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        child: Container(
+                            margin: EdgeInsets.only(top: 5, bottom: 5),
+                            color: Color(0xffe9e9e9),
+                            height: 420,
+                            width: 390,
+                            child: TextButton(
+                              onPressed: () {},
+                              child: my_text_normal_bold(
+                                  branches[index].branchtittle,
+                                  20,
                                   Colors.black),
                             )),
                       );
