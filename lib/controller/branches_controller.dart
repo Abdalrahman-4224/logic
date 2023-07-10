@@ -5,7 +5,8 @@ import 'package:logic_study/models/branches_model.dart';
 class BranchesController extends GetxController {
   final BranchesServices apiService =
       BranchesServices(); //  API service instance
-  late RxList<BranchesModel> branches = RxList(); // Reactive list of courses
+  late RxList<BranchesModel>? branchesList =
+      RxList(); // Reactive list of branches
   @override
   void onInit() {
     fetchbranches();
@@ -15,7 +16,7 @@ class BranchesController extends GetxController {
   Future<void> fetchbranches() async {
     try {
       final branchdata = await apiService.fetchBranches();
-      branches.assignAll(branchdata);
+      branchesList?.assignAll(branchdata);
     } catch (error) {
       // Handle error
       print('Failed to fetch branch: $error');

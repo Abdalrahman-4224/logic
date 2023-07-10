@@ -40,15 +40,15 @@ class Profile_screen extends StatelessWidget {
           )),
       bottomNavigationBar: BottomAppBar(
         child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-          under_appbar_icons('assets/icons/underappbar_account.svg', () {
+          underappbaricons('assets/icons/underappbar_account.svg', () {
             Get.to(Profile_screen());
           }),
           Padding(
             padding: const EdgeInsets.only(left: 50),
-            child: under_appbar_icons(
+            child: underappbaricons(
                 'assets/icons/underappbar_mycourses.svg', () {}),
           ),
-          under_appbar_icons('assets/icons/underappbar_the_collage.svg', () {
+          underappbaricons('assets/icons/underappbar_the_collage.svg', () {
             Get.to(Home_screen());
           }),
         ]),
@@ -117,8 +117,8 @@ class Profile_screen extends StatelessWidget {
                             fontFamily: 'OMNES-BOLD',
                             fontSize: 14,
                           )),
-                      my_text_normal('الكلية', 12, Colors.black),
-                      my_text_normal('الفرع', 12, Colors.black),
+                      mytextnormal('الكلية', 12, Colors.black),
+                      mytextnormal('الفرع', 12, Colors.black),
                     ],
                   )
                 ]),
@@ -128,7 +128,7 @@ class Profile_screen extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.all(8.0),
-          child: my_text_normal(
+          child: mytextnormal(
             'اشتراكاتك',
             22,
             Colors.black,

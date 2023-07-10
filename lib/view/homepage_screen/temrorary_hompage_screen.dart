@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:logic_study/view/course_screen.dart';
 import 'package:logic_study/widgets/cards.dart';
 import 'package:get/get.dart';
@@ -7,11 +6,15 @@ import 'package:logic_study/view/profile_screen.dart';
 import 'package:logic_study/controller/courses_controller.dart';
 import 'package:logic_study/constant.dart';
 import 'package:logic_study/controller/Universitites_controller.dart';
+import 'package:logic_study/controller/colleges_controller.dart';
+import 'package:logic_study/controller/branches_controller.dart';
 
 class new_homepage_screen extends StatelessWidget {
   final Coursecontroller _courseController = Get.put(Coursecontroller());
   final UniversititesController _universititesController =
       Get.put(UniversititesController());
+  final CollegesController _collegesController = Get.put(CollegesController());
+  final BranchesController _branchesController = Get.put(BranchesController());
 
   new_homepage_screen({super.key});
 
@@ -21,12 +24,11 @@ class new_homepage_screen extends StatelessWidget {
         bottomNavigationBar: BottomAppBar(
           child:
               Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-            under_appbar_icons('assets/icons/underappbar_account.svg', () {
+            underappbaricons('assets/icons/underappbar_account.svg', () {
               Get.toNamed(Profile_screen.id);
             }),
-            under_appbar_icons('assets/icons/underappbar_mycourses.svg', () {}),
-            under_appbar_icons(
-                'assets/icons/underappbar_the_collage.svg', () {}),
+            underappbaricons('assets/icons/underappbar_mycourses.svg', () {}),
+            underappbaricons('assets/icons/underappbar_the_collage.svg', () {}),
           ]),
         ),
         backgroundColor: Colors.white,
@@ -40,7 +42,7 @@ class new_homepage_screen extends StatelessWidget {
                         left: MediaQuery.of(context).size.width * 0.04),
                     child: Align(
                         alignment: Alignment.topLeft,
-                        child: my_text_normal_bold(
+                        child: mytextbold(
                             'logic study',
                             MediaQuery.of(context).size.shortestSide * 0.06,
                             Colors.black))),
@@ -51,8 +53,18 @@ class new_homepage_screen extends StatelessWidget {
                     onTap: () {
                       final universities =
                           _universititesController.universitiesList!.value;
-                      universisitesChoices(context,
-                          universities: universities, ontap: () {});
+                      final colleges = _collegesController.collegesList!.value;
+                      final branches = _branchesController.branchesList!.value;
+                      universisitesChoices(context, universities: universities,
+                          ontap: () {
+                        collegeschoices(context, choices: colleges,
+                            onpress: () {
+                          brancheschoices(context, branches: branches,
+                              onpress: () {
+                            //TODO do the post event
+                          });
+                        });
+                      });
                     },
                     child: Image.asset(
                         'assets/image_needed/unifersity_image.png')),

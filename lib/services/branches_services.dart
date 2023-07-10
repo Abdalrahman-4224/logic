@@ -15,12 +15,12 @@ class BranchesServices {
     final response = await http.get(url, headers: headers);
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body) as RxList;
-      final colleges =
+      final branches =
           data.map((dynamic json) => BranchesModel.fromjson(json)).toList();
-      final collegeRx = RxList<BranchesModel>(colleges);
-      return collegeRx;
+      final branchRx = RxList<BranchesModel>(branches);
+      return branchRx;
     } else {
-      throw Exception('Failed to load videos');
+      throw Exception('Failed to load branches');
     }
   }
 }

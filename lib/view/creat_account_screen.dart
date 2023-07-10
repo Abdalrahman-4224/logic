@@ -39,7 +39,7 @@ class Creat_account_screen extends StatelessWidget {
                           SizedBox(
                             width: 5,
                           ),
-                          my_text_normal_bold('رجوع', 20, Colors.black)
+                          mytextbold('رجوع', 20, Colors.black)
                         ]),
                       ),
                     ),
@@ -50,8 +50,7 @@ class Creat_account_screen extends StatelessWidget {
                         alignment: Alignment.centerRight,
                         child: Padding(
                             padding: const EdgeInsets.all(10.0),
-                            child: my_text_normal_bold(
-                                "انشاء حساب", 30, Colors.black))),
+                            child: mytextbold("انشاء حساب", 30, Colors.black))),
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.02,
                     ),
@@ -72,7 +71,7 @@ class Creat_account_screen extends StatelessWidget {
                         margin: EdgeInsets.only(right: 8),
                         child: Align(
                             alignment: Alignment.centerRight,
-                            child: my_text_normal(
+                            child: mytextnormal(
                                 'قم بادخال اسم مستخدم صالح', 15, Colors.red)),
                       ),
                     ),
@@ -92,10 +91,8 @@ class Creat_account_screen extends StatelessWidget {
                         margin: EdgeInsets.only(right: 8),
                         child: Align(
                             alignment: Alignment.centerRight,
-                            child: my_text_normal(
-                                'قم بادخال بريد الكتروني صالح',
-                                15,
-                                Colors.red)),
+                            child: mytextnormal('قم بادخال بريد الكتروني صالح',
+                                15, Colors.red)),
                       ),
                     ),
                     passwordCard_1(
@@ -115,7 +112,7 @@ class Creat_account_screen extends StatelessWidget {
                         margin: EdgeInsets.only(right: 8),
                         child: Align(
                             alignment: Alignment.centerRight,
-                            child: my_text_normal(
+                            child: mytextnormal(
                                 'قم بأدخال كلمة مرور صالحة', 15, Colors.red)),
                       ),
                     ),
@@ -131,7 +128,7 @@ class Creat_account_screen extends StatelessWidget {
                         margin: EdgeInsets.only(right: 8),
                         child: Align(
                             alignment: Alignment.centerRight,
-                            child: my_text_normal(
+                            child: mytextnormal(
                                 'كلمات السر لا تتطابق', 15, Colors.red)),
                       ),
                     ),
@@ -140,10 +137,10 @@ class Creat_account_screen extends StatelessWidget {
                           textDirection: TextDirection.rtl,
                           child: Row(
                             children: [
-                              my_text_normal(
+                              mytextnormal(
                                   "بالتسجيل فانت توافق على", 12, Colors.black),
                               GestureDetector(
-                                child: my_text_normal_bold(
+                                child: mytextbold(
                                     'الشروط والأحكام وسياسة الخصوصية',
                                     12,
                                     Colors.black),
@@ -151,7 +148,7 @@ class Creat_account_screen extends StatelessWidget {
                                   //TODO navigate to webpage
                                 },
                               ),
-                              my_text_normal('الخاصة بنا', 12, Colors.black)
+                              mytextnormal('الخاصة بنا', 12, Colors.black)
                             ],
                           )),
                       value: _controller.isChecked.value,
@@ -188,14 +185,14 @@ class Creat_account_screen extends StatelessWidget {
                           width: MediaQuery.of(context).size.width * 0.25,
                           child: Row(
                             children: [
-                              my_text_normal(
+                              mytextnormal(
                                   'لديك حساب بالفعل', 12, Colors.black),
                               GestureDetector(
                                 onTap: () {
                                   Get.back();
                                 },
-                                child: my_text_normal_bold(
-                                    'سجل الدخول', 12, Colors.blue),
+                                child:
+                                    mytextbold('سجل الدخول', 12, Colors.blue),
                               )
                             ],
                           ),

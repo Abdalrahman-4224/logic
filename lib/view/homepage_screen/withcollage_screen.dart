@@ -29,7 +29,7 @@ class _With_collage_screenState extends State<With_collage_screen> {
                         left: MediaQuery.of(context).size.width * 0.04),
                     child: Align(
                         alignment: Alignment.topLeft,
-                        child: my_text_normal_bold(
+                        child: mytextbold(
                             'logic study',
                             MediaQuery.of(context).size.shortestSide * 0.06,
                             Colors.black))),
@@ -378,13 +378,13 @@ class _With_collage_screenState extends State<With_collage_screen> {
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    under_appbar_icons('assets/icons/underappbar_account.svg',
+                    underappbaricons('assets/icons/underappbar_account.svg',
                         () {
                       Get.to(const Profile_screen());
                     }),
-                    under_appbar_icons(
+                    underappbaricons(
                         'assets/icons/underappbar_mycourses.svg', () {}),
-                    under_appbar_icons(
+                    underappbaricons(
                         'assets/icons/underappbar_the_collage.svg', () {}),
                   ]),
             ),

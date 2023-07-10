@@ -71,13 +71,13 @@ class creat_account_controller extends GetxController {
       });
     } else {
       Get.dialog(AlertDialog(
-        title: my_text_normal('خطأ في التسجيل', 12, Colors.red),
+        title: mytextnormal('خطأ في التسجيل', 12, Colors.red),
         content:
-            my_text_normal('قم بأدخال المعلومات بصورة صحيحة', 15, Colors.black),
+            mytextnormal('قم بأدخال المعلومات بصورة صحيحة', 15, Colors.black),
         actions: [
           TextButton(
             onPressed: () => Get.back(),
-            child: my_text_normal('تم', 12, Colors.blue),
+            child: mytextnormal('تم', 12, Colors.blue),
           ),
         ],
       ));

@@ -1,11 +1,12 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:logic_study/models/university_model.dart';
-import 'package:logic_study/view/video_screen.dart';
 import 'package:logic_study/models/colleges_model.dart';
 import 'package:logic_study/models/branches_model.dart';
+import 'package:logic_study/constant.dart';
 
 // contentBox(context) {
 //   return Stack(
@@ -91,7 +92,7 @@ Future<dynamic> universisitesChoices(
                 borderRadius: BorderRadius.circular(20),
               ),
               child: Column(children: [
-                my_text_normal_bold('اختار الجامعة', 20, Colors.black),
+                mytextbold('اختار الجامعة', 20, Colors.black),
                 Expanded(
                   child: GridView.builder(
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -100,7 +101,10 @@ Future<dynamic> universisitesChoices(
                     itemCount: universities.length,
                     itemBuilder: (context, index) {
                       return GestureDetector(
-                        onTap: ontap,
+                        onTap: () {
+                          ontap();
+                          Choices.universityid = universities[index].id;
+                        },
                         child: SizedBox(
                           height: 73.69,
                           width: 47,
@@ -110,7 +114,7 @@ Future<dynamic> universisitesChoices(
                               child:
                                   Image.network(universities[index].imageurl),
                             ),
-                            my_text_normal(
+                            mytextnormal(
                                 universities[index].title, 17, Colors.black)
                           ]),
                         ),
@@ -139,8 +143,8 @@ Future<dynamic> universisitesChoices(
       });
 }
 
-Future<dynamic> coolegeschoices(BuildContext context,
-    {required List<Colleges_model> choices}) {
+Future<dynamic> collegeschoices(BuildContext context,
+    {required List<Colleges_model> choices, required VoidCallback onpress}) {
   return showModalBottomSheet(
       elevation: 0,
       backgroundColor: Colors.transparent,
@@ -161,7 +165,7 @@ Future<dynamic> coolegeschoices(BuildContext context,
                 borderRadius: BorderRadius.circular(20),
               ),
               child: Column(children: [
-                my_text_normal_bold('اختَر الكُلية', 20, Colors.black),
+                mytextbold('اختَر الكُلية', 20, Colors.black),
                 Expanded(
                   child: ListView.builder(
                     itemCount: choices.length,
@@ -174,10 +178,11 @@ Future<dynamic> coolegeschoices(BuildContext context,
                             height: 420,
                             width: 390,
                             child: TextButton(
-                              onPressed: () {},
-                              child: my_text_normal_bold(
-                                  choices[index].collegetitle,
-                                  20,
+                              onPressed: () {
+                                onpress();
+                                Choices.collegeid = choices[index].collegeid;
+                              },
+                              child: mytextbold(choices[index].collegetitle, 20,
                                   Colors.black),
                             )),
                       );
@@ -206,7 +211,7 @@ Future<dynamic> coolegeschoices(BuildContext context,
 }
 
 Future<dynamic> brancheschoices(BuildContext context,
-    {required List<BranchesModel> branches}) {
+    {required List<BranchesModel> branches, required VoidCallback onpress}) {
   return showModalBottomSheet(
       elevation: 0,
       backgroundColor: Colors.transparent,
@@ -227,7 +232,7 @@ Future<dynamic> brancheschoices(BuildContext context,
                 borderRadius: BorderRadius.circular(20),
               ),
               child: Column(children: [
-                my_text_normal_bold('اختَر الفرع', 20, Colors.black),
+                mytextbold('اختَر الفرع', 20, Colors.black),
                 Expanded(
                   child: ListView.builder(
                     itemCount: branches.length,
@@ -240,11 +245,12 @@ Future<dynamic> brancheschoices(BuildContext context,
                             height: 420,
                             width: 390,
                             child: TextButton(
-                              onPressed: () {},
-                              child: my_text_normal_bold(
-                                  branches[index].branchtittle,
-                                  20,
-                                  Colors.black),
+                              onPressed: () {
+                                onpress;
+                                Choices.branchid = branches[index].branchid;
+                              },
+                              child: mytextbold(branches[index].branchtittle,
+                                  20, Colors.black),
                             )),
                       );
                     },
@@ -288,33 +294,27 @@ Directionality addedlatley(BuildContext context, VoidCallback ontap) {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                  // height: MediaQuery.of(context).size.height * 0.16,
-                  // width: MediaQuery.of(context).size.width * 0.3,
-
-                  child: Flexible(
-                      child: ClipRRect(
+              Flexible(
+                  child: ClipRRect(
                 borderRadius: BorderRadius.circular(10),
                 child: Image.asset('assets/image_needed/construction-site.png'),
-              ))),
-              Container(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    Text("مقاومة مواد - اسئلة فاينل",
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 14,
-                            fontFamily: 'normalMyFont',
-                            fontWeight: FontWeight.bold)),
-                    Text("تم رفعة امس",
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 9,
-                            fontFamily: 'normalMyFont')),
-                  ],
-                ),
+              )),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: const [
+                  Text("مقاومة مواد - اسئلة فاينل",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 14,
+                          fontFamily: 'normalMyFont',
+                          fontWeight: FontWeight.bold)),
+                  Text("تم رفعة امس",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 9,
+                          fontFamily: 'normalMyFont')),
+                ],
               ),
             ],
           ),
@@ -405,12 +405,12 @@ ClipRRect othersbutton(BuildContext context,
                 ClipRRect(
                   borderRadius: BorderRadius.circular(10),
                   child: Image.asset(
-                    '$imageurl',
+                    imageurl,
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(3.0),
-                  child: my_text_normal('$title', 15, Colors.black),
+                  child: mytextnormal('$title', 15, Colors.black),
                 ),
               ],
             ),
@@ -421,11 +421,23 @@ ClipRRect othersbutton(BuildContext context,
   );
 }
 
-GestureDetector under_appbar_icons(String icon, VoidCallback ontap) {
+GestureDetector underappbaricons(String icon, VoidCallback ontap) {
   return GestureDetector(
-    child: SvgPicture.asset(icon),
     onTap: ontap,
+    child: SvgPicture.asset(icon),
   );
+}
+
+Widget? loadingIndicator(bool isloading) {
+  if (isloading == true) {
+    return Center(
+      child: SpinKitFadingCircle(
+        color: Colors.blue, // Customize the color
+        size: 50.0, // Customize the size
+      ),
+    );
+  }
+  return null;
 }
 
 // GestureDetector basiccourses({String? title, String? imagetitle}) {
@@ -456,7 +468,7 @@ GestureDetector under_appbar_icons(String icon, VoidCallback ontap) {
 //       ));
 // }
 
-Directionality my_text_normal(String text, double size, Color color) {
+Directionality mytextnormal(String text, double size, Color color) {
   return Directionality(
     textDirection: TextDirection.rtl,
     child: Text(
@@ -466,7 +478,7 @@ Directionality my_text_normal(String text, double size, Color color) {
   );
 }
 
-Text my_text_normal_bold(String text, double size, Color color) {
+Text mytextbold(String text, double size, Color color) {
   return Text(
     text,
     style: TextStyle(fontFamily: 'OMNES-BOLD', fontSize: size, color: color),

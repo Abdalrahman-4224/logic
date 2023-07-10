@@ -26,8 +26,7 @@ class login_screen extends StatelessWidget {
                     ),
                     Padding(
                         padding: const EdgeInsets.all(15.0),
-                        child: my_text_normal_bold(
-                            'تسجيل الدخول', 30, Colors.black)),
+                        child: mytextbold('تسجيل الدخول', 30, Colors.black)),
                     mytextfield(context,
                         hinttext: 'البريد الاكتروني',
                         icon: Icons.email,
@@ -42,7 +41,7 @@ class login_screen extends StatelessWidget {
                         padding: EdgeInsets.all(8),
                         child: TextButton(
                             onPressed: () {},
-                            child: my_text_normal(
+                            child: mytextnormal(
                                 'نسيت كملة المرور؟', 12, Colors.black)),
                       ),
                     ),
@@ -51,20 +50,20 @@ class login_screen extends StatelessWidget {
                           textDirection: TextDirection.rtl,
                           child: Row(
                             children: [
-                              my_text_normal(
+                              mytextnormal(
                                   "بالتسجيل فإنك توافق على ",
                                   MediaQuery.of(context).size.shortestSide *
                                       0.02,
                                   Colors.black),
                               GestureDetector(
-                                child: my_text_normal(
+                                child: mytextnormal(
                                     'الشروط والأحكام وسياسة الخصوصية',
                                     MediaQuery.of(context).size.shortestSide *
                                         0.02,
                                     Colors.blue),
                                 onTap: () {},
                               ),
-                              my_text_normal(
+                              mytextnormal(
                                 "الخاصة بنا",
                                 MediaQuery.of(context).size.shortestSide * 0.02,
                                 Colors.black,
@@ -98,7 +97,7 @@ class login_screen extends StatelessWidget {
                           textDirection: TextDirection.rtl,
                           child: Row(
                             children: [
-                              my_text_normal(
+                              mytextnormal(
                                   'ليس لديك حساب؟',
                                   MediaQuery.of(context).size.shortestSide *
                                       0.02,
@@ -107,7 +106,7 @@ class login_screen extends StatelessWidget {
                                 onTap: () {
                                   Get.to(Creat_account_screen());
                                 },
-                                child: my_text_normal_bold(
+                                child: mytextbold(
                                     'انشاء حساب',
                                     MediaQuery.of(context).size.shortestSide *
                                         0.02,
@@ -121,7 +120,7 @@ class login_screen extends StatelessWidget {
                   ])
                 ]),
                 if (_controller.isloading.value == true)
-                  LoadingIndicator(_controller.isloading.value)!,
+                  loadingIndicator(_controller.isloading.value)!,
               ],
             )));
   }

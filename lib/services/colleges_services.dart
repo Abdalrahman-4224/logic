@@ -4,7 +4,6 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 import 'package:logic_study/constant.dart';
 import 'package:logic_study/models/colleges_model.dart';
-import 'package:logic_study/models/courses_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 
@@ -22,7 +21,7 @@ class CollegesServices {
       final collegeRx = RxList<Colleges_model>(colleges);
       return collegeRx;
     } else {
-      throw Exception('Failed to load videos');
+      throw Exception('Failed to load colleges');
     }
   }
 }

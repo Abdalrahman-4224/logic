@@ -2,23 +2,24 @@ import 'package:get/get.dart';
 import 'package:logic_study/models/colleges_model.dart';
 import 'package:logic_study/services/colleges_services.dart';
 
-class BranchesController extends GetxController {
+class CollegesController extends GetxController {
   final CollegesServices apiService =
       CollegesServices(); //  API service instance
-  late RxList<Colleges_model> colleges = RxList(); // Reactive list of courses
+  late RxList<Colleges_model>? collegesList =
+      RxList(); // Reactive list of colleges
   @override
   void onInit() {
-    fetchbranches();
+    fetchcolleges();
     super.onInit();
   }
 
-  Future<void> fetchbranches() async {
+  Future<void> fetchcolleges() async {
     try {
       final collegedata = await apiService.fetchcolleges();
-      colleges.assignAll(collegedata);
+      collegesList?.assignAll(collegedata);
     } catch (error) {
       // Handle error
-      print('Failed to fetch branch: $error');
+      print('Failed to fetch colleges: $error');
     }
   }
 }
