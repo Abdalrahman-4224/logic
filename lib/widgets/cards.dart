@@ -72,6 +72,22 @@ import 'package:logic_study/constant.dart';
 //     ],
 //   );
 // }
+import 'package:get/get.dart';
+import 'package:flutter/material.dart';
+
+Future<dynamic> mydialog({required String title, required String error}) {
+  return Get.dialog(AlertDialog(
+    title: Text(title),
+    content: Text(error),
+    actions: [
+      TextButton(
+        onPressed: () => Get.back(),
+        child: const Text('OK'),
+      ),
+    ],
+  ));
+}
+
 Future<dynamic> universisitesChoices(
   BuildContext context, {
   required List<UniversitiesModel> universities,

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:logic_study/constant.dart';
 import 'package:logic_study/models/university_model.dart';
+import 'package:logic_study/view/login_screen.dart';
 
 class Universitites_services {
   Future<RxList<UniversitiesModel>> fetchuniversitites() async {
@@ -20,6 +21,8 @@ class Universitites_services {
       final UniversitiesRx = RxList<UniversitiesModel>(Universities);
       return UniversitiesRx;
     } else {
+      if (response.statusCode == 401) Get.to(login_screen());
+
       throw Exception('Failed to load Universities');
     }
   }

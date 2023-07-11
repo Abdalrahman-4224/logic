@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:logic_study/models/video.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:logic_study/view/login_screen.dart';
 
 class Video_services {
   final securestorage = const FlutterSecureStorage();
@@ -17,6 +18,8 @@ class Video_services {
       final videosRx = RxList<Video_Model>(videos);
       return videosRx;
     } else {
+      if (response.statusCode == 401) Get.to(login_screen());
+
       throw Exception('Failed to load videos');
     }
   }

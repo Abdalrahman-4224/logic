@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:logic_study/constant.dart';
 import 'package:logic_study/models/courses_model.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:logic_study/view/login_screen.dart';
 
 class Courseservices {
   FlutterSecureStorage securestorage = FlutterSecureStorage();
@@ -21,6 +22,8 @@ class Courseservices {
       final CoursesRx = RxList<Course_model>(Courses);
       return CoursesRx;
     } else {
+      if (response.statusCode == 401) Get.to(login_screen());
+
       throw Exception('Failed to load videos');
     }
   }

@@ -4,6 +4,7 @@ import 'package:logic_study/services/login_services.dart';
 import 'package:logic_study/constant.dart';
 import 'package:logic_study/view/homepage_screen/home_screen.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:logic_study/widgets/cards.dart';
 
 // Controller
 class login_controller extends GetxController {
@@ -22,31 +23,17 @@ class login_controller extends GetxController {
         secureStorage.write(key: 'password', value: password);
         Get.to(() => Home_screen());
       } else {
-        Get.dialog(AlertDialog(
-          title: const Text('Login Error'),
-          content: const Text('Failed to log in. Please try again later.'),
-          actions: [
-            TextButton(
-              onPressed: () => Get.back(),
-              child: const Text('OK'),
-            ),
-          ],
-        ));
+        mydialog(
+            title: 'خطأ في تسجيل الدخول',
+            error: "خطأ في تسجيل الدخول الدخول حاول في وقت اخر");
         // Handle login failure
         // Display error message or perform any necessary actions
       }
     }).catchError((error) async {
       isloading.value = false;
-      await Get.dialog(AlertDialog(
-        title: const Text('Login Error'),
-        content: const Text('Failed to log in. Please try again later.'),
-        actions: [
-          TextButton(
-            onPressed: () => Get.back(),
-            child: const Text('OK'),
-          ),
-        ],
-      ));
+      await mydialog(
+          title: 'خطأ في تسجيل الدخول',
+          error: "خطأ في تسجيل الدخول الدخول حاول في وقت اخر");
     }).whenComplete(() {
       isloading.value = false;
     });

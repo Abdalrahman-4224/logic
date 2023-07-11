@@ -38,7 +38,8 @@ class passwordCard_1 extends StatelessWidget {
   String hintext;
   ValueSetter<String> onchanged;
   final creat_account_controller _controller = creat_account_controller();
-  passwordCard_1({super.key, 
+  passwordCard_1({
+    super.key,
     required this.hintext,
     required this.onchanged,
   });
@@ -144,17 +145,7 @@ Center or_byusing(BuildContext context) {
   );
 }
 
-Widget? LoadingIndicator(bool isloading) {
-  if (isloading == true) {
-    return Center(
-      child: SpinKitFadingCircle(
-        color: Colors.blue, // Customize the color
-        size: 50.0, // Customize the size
-      ),
-    );
-  }
-  return null;
-}
+
 // Center passowrd_card(BuildContext context) {
 //   return Center(
 //     child: Container(

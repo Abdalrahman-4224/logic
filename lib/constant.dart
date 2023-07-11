@@ -7,6 +7,12 @@ VideoPlayerController Ccontroller = VideoPlayerController.network(Curl);
 String Cid = '';
 const String api = 'https://dashboard.logic-study.com/api';
 
+class Choices {
+  static String collegeid = '';
+  static String branchid = '';
+  static String universityid = '';
+}
+
 class ConstantVars {
   static String username = "";
   static String password = "";

@@ -11,7 +11,7 @@ import 'package:responsive_framework/responsive_framework.dart';
 import 'view/homepage_screen/home_screen.dart';
 import 'package:dart_vlc/dart_vlc.dart';
 import 'package:get/get.dart';
-import 'package:logic_study/view/homepage_screen/new_homepage_screen.dart';
+import 'package:logic_study/view/homepage_screen/temprorary_hompage_screen.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 void main() async {

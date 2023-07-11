@@ -9,14 +9,14 @@ import 'package:logic_study/controller/Universitites_controller.dart';
 import 'package:logic_study/controller/colleges_controller.dart';
 import 'package:logic_study/controller/branches_controller.dart';
 
-class new_homepage_screen extends StatelessWidget {
+class TemproraryHompageScreen extends StatelessWidget {
   final Coursecontroller _courseController = Get.put(Coursecontroller());
   final UniversititesController _universititesController =
       Get.put(UniversititesController());
   final CollegesController _collegesController = Get.put(CollegesController());
   final BranchesController _branchesController = Get.put(BranchesController());
 
-  new_homepage_screen({super.key});
+  TemproraryHompageScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

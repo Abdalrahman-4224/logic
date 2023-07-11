@@ -6,6 +6,7 @@ import 'package:logic_study/constant.dart';
 import 'package:logic_study/models/colleges_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:logic_study/view/login_screen.dart';
 
 class CollegesServices {
   FlutterSecureStorage securestorage = FlutterSecureStorage();
@@ -21,6 +22,7 @@ class CollegesServices {
       final collegeRx = RxList<Colleges_model>(colleges);
       return collegeRx;
     } else {
+      if (response.statusCode == 401) Get.to(login_screen());
       throw Exception('Failed to load colleges');
     }
   }

@@ -18,6 +18,8 @@ class BranchesController extends GetxController {
       final branchdata = await apiService.fetchBranches();
       branchesList?.assignAll(branchdata);
     } catch (error) {
+      print(
+          '---------------------------error------------------------(branches_controller)');
       // Handle error
       print('Failed to fetch branch: $error');
     }

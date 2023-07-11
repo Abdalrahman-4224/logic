@@ -2,14 +2,16 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:logic_study/constant.dart';
+import 'package:logic_study/view/login_screen.dart';
+import 'package:get/get.dart';
 
 //  Services
 class AuthService {
   FlutterSecureStorage secureStorage = const FlutterSecureStorage();
   Future<bool> loginUser(String email, String password) async {
-    const url = '$api/login'; // Replace with your API endpoint
+    final url = Uri.parse('$api/login'); // Replace with your API endpoint
     final response = await http.post(
-      Uri.parse(url),
+      url,
       body: {
         'email': email,
         'password': password,
@@ -28,14 +30,15 @@ class AuthService {
       if (response.statusCode == 401) {
         // Unauthorized error
         // Handle unauthorized error
+        Get.to(login_screen());
       } else {
         // Other error codes
         // Extract and display the error message from the response body
         String errorMessage = parseErrorMessage(response.body);
         throw errorMessage; // Throw an exception to indicate login failure
       }
+      return false;
     }
-    return false;
   }
 
   String parseErrorMessage(String responseBody) {

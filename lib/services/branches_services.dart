@@ -5,6 +5,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 import 'package:logic_study/constant.dart';
 import 'package:http/http.dart' as http;
+import 'package:logic_study/view/login_screen.dart';
 
 class BranchesServices {
   FlutterSecureStorage securestorage = FlutterSecureStorage();
@@ -20,6 +21,8 @@ class BranchesServices {
       final branchRx = RxList<BranchesModel>(branches);
       return branchRx;
     } else {
+      if (response.statusCode == 401) Get.to(login_screen());
+
       throw Exception('Failed to load branches');
     }
   }
