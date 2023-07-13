@@ -3,6 +3,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:logic_study/view/login_screen.dart';
+import 'package:logic_study/constant.dart';
+import 'package:get/get.dart';
+import 'package:logic_study/view/homepage_screen/nocollage_screen.dart';
+import 'package:logic_study/view/homepage_screen/temprorary_hompage_screen.dart';
 
 class Home_screen extends StatelessWidget {
   FlutterSecureStorage secureStorage = FlutterSecureStorage();
@@ -29,9 +33,15 @@ class Home_screen extends StatelessWidget {
   }
 
   Widget returnedscreeen() {
+    // ignore: unrelated_type_equality_checks
     if (secureStorage.containsKey(key: 'email') == true &&
+        // ignore: unrelated_type_equality_checks
         secureStorage.containsKey(key: 'password') == true) {
-      return Home_screen();
+      if (Choices.branchid.isEmpty) {
+        return (NoCollege());
+      } else {
+        return (TemproraryHompageScreen());
+      }
     } else {
       return login_screen();
     }

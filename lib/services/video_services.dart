@@ -18,7 +18,11 @@ class Video_services {
       final videosRx = RxList<Video_Model>(videos);
       return videosRx;
     } else {
-      if (response.statusCode == 401) Get.to(login_screen());
+      if (response.statusCode == 401) {
+        Get.to(login_screen());
+        securestorage.delete(key: 'email');
+        securestorage.delete(key: 'password');
+      }
 
       throw Exception('Failed to load videos');
     }

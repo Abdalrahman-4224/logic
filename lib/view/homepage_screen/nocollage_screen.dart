@@ -1,5 +1,6 @@
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:logic_study/widgets/cards.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -8,8 +9,8 @@ import 'package:logic_study/controller/Universitites_controller.dart';
 import 'package:logic_study/controller/branches_controller.dart';
 import 'package:logic_study/controller/colleges_controller.dart';
 
-class MyWidget extends StatelessWidget {
-  const MyWidget({super.key});
+class NoCollege extends StatelessWidget {
+  const NoCollege({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -59,6 +60,14 @@ class MyWidget extends StatelessWidget {
                     child: Image.asset(
                         'assets/image_needed/unifersity_image.png')),
               ],
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: SvgPicture.asset(
+                'assets/icons/no_choices.svg',
+                width: 287.5,
+                height: 312.6,
+              ),
             ),
           ],
         ),

@@ -21,7 +21,11 @@ class Universitites_services {
       final UniversitiesRx = RxList<UniversitiesModel>(Universities);
       return UniversitiesRx;
     } else {
-      if (response.statusCode == 401) Get.to(login_screen());
+      if (response.statusCode == 401) {
+        Get.to(login_screen());
+        secureStorage.delete(key: 'email');
+        secureStorage.delete(key: 'password');
+      }
 
       throw Exception('Failed to load Universities');
     }

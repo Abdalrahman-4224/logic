@@ -7,7 +7,9 @@ import 'package:logic_study/models/university_model.dart';
 import 'package:logic_study/models/colleges_model.dart';
 import 'package:logic_study/models/branches_model.dart';
 import 'package:logic_study/constant.dart';
-
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:get/get.dart';
+import 'package:flutter/material.dart';
 // contentBox(context) {
 //   return Stack(
 //     children: <Widget>[
@@ -72,8 +74,8 @@ import 'package:logic_study/constant.dart';
 //     ],
 //   );
 // }
-import 'package:get/get.dart';
-import 'package:flutter/material.dart';
+
+FlutterSecureStorage secureStorage = FlutterSecureStorage();
 
 Future<dynamic> mydialog({required String title, required String error}) {
   return Get.dialog(AlertDialog(
@@ -119,6 +121,9 @@ Future<dynamic> universisitesChoices(
                       return GestureDetector(
                         onTap: () {
                           ontap();
+                          secureStorage.write(
+                              key: 'universitytittle',
+                              value: universities[index].title);
                           Choices.universityid = universities[index].id;
                         },
                         child: SizedBox(
@@ -196,6 +201,9 @@ Future<dynamic> collegeschoices(BuildContext context,
                             child: TextButton(
                               onPressed: () {
                                 onpress();
+                                secureStorage.write(
+                                    key: 'collegetittle',
+                                    value: choices[index].collegetitle);
                                 Choices.collegeid = choices[index].collegeid;
                               },
                               child: mytextbold(choices[index].collegetitle, 20,
@@ -263,6 +271,9 @@ Future<dynamic> brancheschoices(BuildContext context,
                             child: TextButton(
                               onPressed: () {
                                 onpress;
+                                secureStorage.write(
+                                    key: 'branchtittle',
+                                    value: branches[index].branchtittle);
                                 Choices.branchid = branches[index].branchid;
                               },
                               child: mytextbold(branches[index].branchtittle,

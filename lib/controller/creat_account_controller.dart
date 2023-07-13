@@ -33,26 +33,33 @@ class creat_account_controller extends GetxController {
           .registerUser(email: email, password: password, username: username)
           .then((success) {
         if (success) {
+          myerror('error2');
           secureStorage.write(key: 'email', value: email);
           secureStorage.write(key: 'password', value: password);
           secureStorage.write(key: 'username', value: username);
           Get.to(() => Home_screen());
           isloading.value = false;
         } else {
+          myerror('error3');
           // Handle registration failure
           // Display error message or perform any necessary actions
         }
       }).catchError((error) async {
         isloading.value = false;
         if (error is String) {
+          myerror('error4');
+          print(error);
           // Handle specific error (e.g., conflict error)
           if (error.contains('conflict')) {
+            myerror('error5');
             // Handle conflict error
             // Display error message or perform any necessary actions
           } else {
+            myerror('error6');
             // Handle other errors if necessary
           }
         } else {
+          myerror('error7');
           // Handle general error
           // Display error message or perform any necessary actions
           await Get.dialog(AlertDialog(
@@ -83,6 +90,8 @@ class creat_account_controller extends GetxController {
       ));
     }
   }
+
+  void myerror(String text) => print(text);
 }
 
 

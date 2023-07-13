@@ -138,17 +138,25 @@ class Creat_account_screen extends StatelessWidget {
                           child: Row(
                             children: [
                               mytextnormal(
-                                  "بالتسجيل فانت توافق على", 12, Colors.black),
+                                  "بالتسجيل فانت توافق على",
+                                  MediaQuery.of(context).size.shortestSide *
+                                      0.026,
+                                  Colors.black),
                               GestureDetector(
                                 child: mytextbold(
                                     'الشروط والأحكام وسياسة الخصوصية',
-                                    12,
+                                    MediaQuery.of(context).size.shortestSide *
+                                        0.026,
                                     Colors.black),
                                 onTap: () {
                                   //TODO navigate to webpage
                                 },
                               ),
-                              mytextnormal('الخاصة بنا', 12, Colors.black)
+                              mytextnormal(
+                                  'الخاصة بنا',
+                                  MediaQuery.of(context).size.shortestSide *
+                                      0.026,
+                                  Colors.black)
                             ],
                           )),
                       value: _controller.isChecked.value,
@@ -182,7 +190,7 @@ class Creat_account_screen extends StatelessWidget {
                       child: Directionality(
                         textDirection: TextDirection.rtl,
                         child: SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.25,
+                          width: MediaQuery.of(context).size.width * 0.5,
                           child: Row(
                             children: [
                               mytextnormal(
@@ -203,6 +211,8 @@ class Creat_account_screen extends StatelessWidget {
                 ),
               ],
             ),
+            if (_controller.isloading.value == true)
+              loadingIndicator(_controller.isloading.value)!,
           ]),
         ),
       ),

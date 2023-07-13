@@ -21,7 +21,11 @@ class BranchesServices {
       final branchRx = RxList<BranchesModel>(branches);
       return branchRx;
     } else {
-      if (response.statusCode == 401) Get.to(login_screen());
+      if (response.statusCode == 401) {
+        Get.to(login_screen());
+        securestorage.delete(key: 'email');
+        securestorage.delete(key: 'password');
+      }
 
       throw Exception('Failed to load branches');
     }

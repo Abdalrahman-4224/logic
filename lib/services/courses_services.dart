@@ -22,7 +22,11 @@ class Courseservices {
       final CoursesRx = RxList<Course_model>(Courses);
       return CoursesRx;
     } else {
-      if (response.statusCode == 401) Get.to(login_screen());
+      if (response.statusCode == 401) {
+        Get.to(login_screen());
+        securestorage.delete(key: 'email');
+        securestorage.delete(key: 'password');
+      }
 
       throw Exception('Failed to load videos');
     }

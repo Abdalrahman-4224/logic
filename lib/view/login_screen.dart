@@ -35,16 +35,6 @@ class login_screen extends StatelessWidget {
                       hintext: 'كلمة المرور',
                       onchanged: (value) => ConstantVars.password.trim(),
                     ),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Padding(
-                        padding: EdgeInsets.all(8),
-                        child: TextButton(
-                            onPressed: () {},
-                            child: mytextnormal(
-                                'نسيت كملة المرور؟', 12, Colors.black)),
-                      ),
-                    ),
                     CheckboxListTile(
                       title: Directionality(
                           textDirection: TextDirection.rtl,
@@ -53,19 +43,20 @@ class login_screen extends StatelessWidget {
                               mytextnormal(
                                   "بالتسجيل فإنك توافق على ",
                                   MediaQuery.of(context).size.shortestSide *
-                                      0.02,
+                                      0.026,
                                   Colors.black),
                               GestureDetector(
                                 child: mytextnormal(
                                     'الشروط والأحكام وسياسة الخصوصية',
                                     MediaQuery.of(context).size.shortestSide *
-                                        0.02,
+                                        0.026,
                                     Colors.blue),
                                 onTap: () {},
                               ),
                               mytextnormal(
                                 "الخاصة بنا",
-                                MediaQuery.of(context).size.shortestSide * 0.02,
+                                MediaQuery.of(context).size.shortestSide *
+                                    0.026,
                                 Colors.black,
                               ),
                             ],
@@ -92,25 +83,18 @@ class login_screen extends StatelessWidget {
                     ),
                     Center(
                       child: SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.25,
+                        width: MediaQuery.of(context).size.width * 0.5,
                         child: Directionality(
                           textDirection: TextDirection.rtl,
                           child: Row(
                             children: [
-                              mytextnormal(
-                                  'ليس لديك حساب؟',
-                                  MediaQuery.of(context).size.shortestSide *
-                                      0.02,
-                                  Colors.black),
+                              mytextnormal('ليس لديك حساب؟', 12, Colors.black),
                               GestureDetector(
                                 onTap: () {
                                   Get.to(Creat_account_screen());
                                 },
-                                child: mytextbold(
-                                    'انشاء حساب',
-                                    MediaQuery.of(context).size.shortestSide *
-                                        0.02,
-                                    Colors.blue),
+                                child:
+                                    mytextbold('انشاء حساب', 12, Colors.blue),
                               )
                             ],
                           ),
