@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:logic_study/view/homepage_screen/home_screen.dart';
 import 'package:logic_study/view/setting_screen.dart';
 import 'package:logic_study/widgets/cards.dart';
@@ -13,6 +14,13 @@ class Profile_screen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    FlutterSecureStorage secureStorage = FlutterSecureStorage();
+    final Future<String?> universitytittle =
+        secureStorage.read(key: 'universitytittle');
+    final Future<String?> collegetittle =
+        secureStorage.read(key: 'collegetittle');
+    final Future<String?> branchtittle =
+        secureStorage.read(key: 'branchtittle');
     return Scaffold(
       appBar: AppBar(
           elevation: 0,
@@ -26,17 +34,10 @@ class Profile_screen extends StatelessWidget {
               Get.to(Setting_screen());
             },
           ),
-          title: const Center(
+          title: Center(
             child: Directionality(
-              textDirection: TextDirection.rtl,
-              child: Text(
-                'الملف الشخصي',
-                style: TextStyle(
-                    fontFamily: 'OMNES',
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold),
-              ),
-            ),
+                textDirection: TextDirection.rtl,
+                child: mytextnormal('الملف الشخصي', 10, Colors.black)),
           )),
       bottomNavigationBar: BottomAppBar(
         child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
@@ -81,7 +82,7 @@ class Profile_screen extends StatelessWidget {
                 CircleAvatar(
                   radius: MediaQuery.of(context).size.width * 0.07,
                   backgroundImage:
-                      AssetImage('assets/image_needed/Frame 5.png'),
+                      AssetImage('assets/image_needed/no-profile-picture.jpg'),
                 ),
                 //here should be the email of user and name
               ],
@@ -112,13 +113,14 @@ class Profile_screen extends StatelessWidget {
                   ),
                   Column(
                     children: [
-                      Text('الجامعة',
-                          style: TextStyle(
-                            fontFamily: 'OMNES-BOLD',
-                            fontSize: 14,
-                          )),
-                      mytextnormal('الكلية', 12, Colors.black),
-                      mytextnormal('الفرع', 12, Colors.black),
+                      Directionality(
+                        textDirection: TextDirection.rtl,
+                        //TODO check this if its correct
+                        child: mytextbold(
+                            universitytittle as String, 14, Colors.black),
+                      ),
+                      mytextnormal(collegetittle as String, 12, Colors.black),
+                      mytextnormal(branchtittle as String, 12, Colors.black),
                     ],
                   )
                 ]),
@@ -140,5 +142,3 @@ class Profile_screen extends StatelessWidget {
     );
   }
 }
-
-//TODO change this to stateless
