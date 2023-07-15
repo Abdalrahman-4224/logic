@@ -19,7 +19,9 @@ class UniversititesController extends GetxController {
       universitiesList?.assignAll(universities);
     } catch (error) {
       // Handle error
-      print('Failed to fetch courses: $error');
+      print(
+          '-----------------------error-----------------(universitites_controller)');
+      print('Failed to fetch university: $error');
     }
   }
 }

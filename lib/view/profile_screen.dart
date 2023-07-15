@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:logic_study/view/homepage_screen/home_screen.dart';
@@ -15,7 +17,7 @@ class Profile_screen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     FlutterSecureStorage secureStorage = FlutterSecureStorage();
-    final Future<String?> universitytittle =
+    Future<String?> universitytittle =
         secureStorage.read(key: 'universitytittle');
     final Future<String?> collegetittle =
         secureStorage.read(key: 'collegetittle');
@@ -37,7 +39,7 @@ class Profile_screen extends StatelessWidget {
           title: Center(
             child: Directionality(
                 textDirection: TextDirection.rtl,
-                child: mytextnormal('الملف الشخصي', 10, Colors.black)),
+                child: mytextbold('الملف الشخصي', 20, Colors.black)),
           )),
       bottomNavigationBar: BottomAppBar(
         child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
@@ -115,12 +117,11 @@ class Profile_screen extends StatelessWidget {
                     children: [
                       Directionality(
                         textDirection: TextDirection.rtl,
-                        //TODO check this if its correct
-                        child: mytextbold(
-                            universitytittle as String, 14, Colors.black),
+                        //TODO university ,college and branch tittle showing to the user
+                        child: mytextbold('universitytittle', 14, Colors.black),
                       ),
-                      mytextnormal(collegetittle as String, 12, Colors.black),
-                      mytextnormal(branchtittle as String, 12, Colors.black),
+                      mytextnormal('collegetittle', 12, Colors.black),
+                      mytextnormal('branchtittle', 12, Colors.black),
                     ],
                   )
                 ]),

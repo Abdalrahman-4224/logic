@@ -3,6 +3,7 @@ import 'package:flutter_windowmanager/flutter_windowmanager.dart';
 import 'package:logic_study/view/account_screen.dart';
 import 'package:logic_study/view/course_screen.dart';
 import 'package:logic_study/view/creat_account_screen.dart';
+import 'package:logic_study/view/homepage_screen/nocollage_screen.dart';
 import 'package:logic_study/view/login_screen.dart';
 import 'package:logic_study/view/logo_screen.dart';
 import 'package:logic_study/view/profile_screen.dart';
@@ -37,7 +38,7 @@ class MyApp extends StatelessWidget {
           const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
         ],
       ),
-      home: login_screen(),
+      home: TemproraryHompageScreen(),
       getPages: [
         GetPage(name: Home_screen.id, page: () => Home_screen()),
         GetPage(name: Course_screen.id, page: () => const Course_screen()),

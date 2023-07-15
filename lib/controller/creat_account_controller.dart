@@ -54,9 +54,6 @@ class creat_account_controller extends GetxController {
             myerror('error5');
             // Handle conflict error
             // Display error message or perform any necessary actions
-          } else {
-            myerror('error6');
-            // Handle other errors if necessary
           }
         } else {
           myerror('error7');
@@ -91,7 +88,8 @@ class creat_account_controller extends GetxController {
     }
   }
 
-  void myerror(String text) => print(text);
+  void myerror(String text) => print(
+      '--------------------$text---------------(creat_account_controller)');
 }
 
 

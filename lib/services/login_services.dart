@@ -30,7 +30,7 @@ class AuthService {
       if (response.statusCode == 401) {
         // Unauthorized error
         // Handle unauthorized error
-        Get.to(login_screen());
+        // TODOLG
       } else {
         // Other error codes
         // Extract and display the error message from the response body

@@ -1,7 +1,10 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:logic_study/view/login_screen.dart';
 import 'package:logic_study/widgets/account_cards.dart';
+import 'package:logic_study/widgets/cards.dart';
 
 class AccountScreen extends StatefulWidget {
   static String id = '/accountscreen';
@@ -90,19 +93,28 @@ class _AccountScreenState extends State<AccountScreen> {
           SizedBox(
             height: 23,
           ),
-          Container(
-            height: 42,
-            alignment: Alignment.center,
-            margin: EdgeInsets.symmetric(horizontal: 15),
-            decoration: BoxDecoration(
-                color: Color(0xFFF05251),
-                borderRadius: BorderRadius.circular(8)),
-            child: Text("حذف الحسابِ",
-                style: TextStyle(
-                    fontSize: 18,
-                    fontFamily: 'normalMyFont',
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold)),
+          GestureDetector(
+            onTap: () {
+              secureStorage.delete(key: 'email');
+              secureStorage.delete(key: 'password');
+              secureStorage.delete(key: 'username');
+
+              Get.to(login_screen());
+            },
+            child: Container(
+              height: 42,
+              alignment: Alignment.center,
+              margin: EdgeInsets.symmetric(horizontal: 15),
+              decoration: BoxDecoration(
+                  color: Color(0xFFF05251),
+                  borderRadius: BorderRadius.circular(8)),
+              child: Text("حذف الحسابِ",
+                  style: TextStyle(
+                      fontSize: 18,
+                      fontFamily: 'normalMyFont',
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold)),
+            ),
           ),
           Container(
               margin: EdgeInsets.symmetric(vertical: 10),

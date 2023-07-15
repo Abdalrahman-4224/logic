@@ -16,7 +16,7 @@ class BranchesController extends GetxController {
   Future<void> fetchbranches() async {
     try {
       final branchdata = await apiService.fetchBranches();
-      branchesList?.assignAll(branchdata);
+      branchesList?.assignAll(branchdata!);
     } catch (error) {
       print(
           '---------------------------error------------------------(branches_controller)');

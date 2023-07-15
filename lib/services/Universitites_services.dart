@@ -22,7 +22,7 @@ class Universitites_services {
       return UniversitiesRx;
     } else {
       if (response.statusCode == 401) {
-        Get.to(login_screen());
+        //TODOLG
         secureStorage.delete(key: 'email');
         secureStorage.delete(key: 'password');
       }

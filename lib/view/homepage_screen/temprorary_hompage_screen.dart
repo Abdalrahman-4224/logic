@@ -27,7 +27,11 @@ class TemproraryHompageScreen extends StatelessWidget {
             underappbaricons('assets/icons/underappbar_account.svg', () {
               Get.toNamed(Profile_screen.id);
             }),
-            underappbaricons('assets/icons/underappbar_mycourses.svg', () {}),
+            Padding(
+              padding: const EdgeInsets.only(left: 50),
+              child: underappbaricons(
+                  'assets/icons/underappbar_mycourses.svg', () {}),
+            ),
             underappbaricons('assets/icons/underappbar_the_collage.svg', () {}),
           ]),
         ),
@@ -36,58 +40,65 @@ class TemproraryHompageScreen extends StatelessWidget {
             child: Column(
           children: [
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                    margin: EdgeInsets.only(
-                        left: MediaQuery.of(context).size.width * 0.04),
+                    margin: EdgeInsets.only(left: 8),
                     child: Align(
                         alignment: Alignment.topLeft,
                         child: mytextbold(
                             'logic study',
                             MediaQuery.of(context).size.shortestSide * 0.06,
                             Colors.black))),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.4,
-                ),
-                GestureDetector(
-                    onTap: () {
-                      final universities =
-                          _universititesController.universitiesList!.value;
-                      final colleges = _collegesController.collegesList!.value;
-                      final branches = _branchesController.branchesList!.value;
-                      universisitesChoices(context, universities: universities,
-                          ontap: () {
-                        collegeschoices(context, choices: colleges,
-                            onpress: () {
-                          brancheschoices(context, branches: branches,
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: GestureDetector(
+                      onTap: () {
+                        final universities =
+                            _universititesController.universitiesList!.value;
+                        final colleges =
+                            _collegesController.collegesList!.value;
+                        final branches =
+                            _branchesController.branchesList!.value;
+                        universisitesChoices(context,
+                            universities: universities, ontap: () {
+                          collegeschoices(context, choices: colleges,
                               onpress: () {
-                            //TODO do the post event
+                            brancheschoices(context, branches: branches,
+                                onpress: () {
+                              //TODO do the post event
+                            });
                           });
                         });
-                      });
-                    },
-                    child: Image.asset(
-                        'assets/image_needed/unifersity_image.png')),
+                      },
+                      child: Image.asset(
+                          'assets/image_needed/unifersity_image.png')),
+                ),
               ],
             ),
             Container(
               margin: const EdgeInsets.all(4),
               height: MediaQuery.of(context).size.height * 0.75,
-              child: ListView.builder(
-                itemBuilder: (context, index) {
-                  dynamic course = _courseController.courses[index];
-                  return othersbutton(
-                    context,
-                    title: course.title,
-                    onpress: () {
-                      Cid = course.id;
-                      Get.toNamed(Course_screen.id);
-                    },
-                    imageurl: course.imageurl,
-                  );
-                },
-              ),
-            ),
+              child: _courseController.courses.isEmpty
+                  ? Center(
+                      child: Text('error getting courses '),
+                    )
+                  : ListView.builder(
+                      itemCount: _courseController.courses.length,
+                      itemBuilder: (context, index) {
+                        final course = _courseController.courses[index];
+                        return othersbutton(
+                          context,
+                          title: course.title,
+                          onpress: () {
+                            Cid = course.id;
+                            Get.toNamed(Course_screen.id);
+                          },
+                          imageurl: course.imageurl,
+                        );
+                      },
+                    ),
+            )
           ],
         )));
   }

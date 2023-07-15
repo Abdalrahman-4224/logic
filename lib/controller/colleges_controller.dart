@@ -18,6 +18,8 @@ class CollegesController extends GetxController {
       final collegedata = await apiService.fetchcolleges();
       collegesList?.assignAll(collegedata);
     } catch (error) {
+      print(
+          '-------------------------error--------------------(colleges_controller)');
       // Handle error
       print('Failed to fetch colleges: $error');
     }

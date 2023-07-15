@@ -9,7 +9,7 @@ import 'package:logic_study/models/branches_model.dart';
 import 'package:logic_study/constant.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
-import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 // contentBox(context) {
 //   return Stack(
 //     children: <Widget>[
@@ -77,6 +77,25 @@ import 'package:flutter/material.dart';
 
 FlutterSecureStorage secureStorage = FlutterSecureStorage();
 
+void openTelegramChat(
+    String courseId, String courseName, String telegramUser) async {
+  // Specify the Telegram username or ID of the recipient
+  // Specify the message to be sent
+  String message =
+      'hi mr ali: am interested in the course: $courseId - $courseName';
+
+  // Generate the Telegram URL with the recipient and message
+  String url =
+      'https://t.me/$telegramUser?text=${Uri.encodeQueryComponent(message)}';
+  Uri telegramUrl = Uri.parse(url);
+  // Open the Telegram app with the chat screen and pre-filled message
+  if (await canLaunchUrl(telegramUrl)) {
+    await launchUrl(telegramUrl);
+  } else {
+    throw 'Could not launch Telegram.';
+  }
+}
+
 Future<dynamic> mydialog({required String title, required String error}) {
   return Get.dialog(AlertDialog(
     title: Text(title),
@@ -96,6 +115,7 @@ Future<dynamic> universisitesChoices(
   required VoidCallback ontap,
 }) {
   return showModalBottomSheet(
+      backgroundColor: Colors.transparent,
       context: context,
       builder: (BuildContext context) {
         return Stack(
