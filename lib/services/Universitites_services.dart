@@ -22,9 +22,11 @@ class Universitites_services {
       return UniversitiesRx;
     } else {
       if (response.statusCode == 401) {
-        //TODOLG
+        Get.to(login_screen());
         secureStorage.delete(key: 'email');
         secureStorage.delete(key: 'password');
+      } else {
+        print('---------${response.statusCode}--------- registration_service');
       }
 
       throw Exception('Failed to load Universities');

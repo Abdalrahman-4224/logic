@@ -20,10 +20,13 @@ class ChoicesServices {
       return true;
     } else {
       if (response.statusCode == 401) {
-        //TODOLG
+        Get.to(login_screen());
+
         secureStorage.delete(key: 'email');
         secureStorage.delete(key: 'password');
-      } else {}
+      } else {
+        print('---------${response.statusCode}--------- choices_post_services');
+      }
       return false;
     }
   }

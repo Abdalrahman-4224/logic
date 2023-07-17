@@ -26,6 +26,8 @@ class Courseservices {
         //TODOLG
         securestorage.delete(key: 'email');
         securestorage.delete(key: 'password');
+      } else {
+        ('---------${response.statusCode}--------- registration_service');
       }
 
       throw Exception('Failed to load videos');

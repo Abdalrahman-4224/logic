@@ -6,6 +6,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 import 'package:logic_study/constant.dart';
 import 'package:http/http.dart' as http;
+import 'package:logic_study/view/homepage_screen/home_screen.dart';
 import 'package:logic_study/view/login_screen.dart';
 import 'package:logic_study/widgets/cards.dart';
 
@@ -26,10 +27,12 @@ class BranchesServices {
       } else {
         if (response.statusCode == 401) {
           print('error 401');
-          //TODOlG
+          Get.to(login_screen());
           securestorage.delete(key: 'email');
           securestorage.delete(key: 'password');
         }
+        print(
+            '---------${response.statusCode}--------- branches_services.dart');
 
         throw Exception('Failed to load branches');
       }

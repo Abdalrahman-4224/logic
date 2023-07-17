@@ -23,10 +23,13 @@ class CollegesServices {
       return collegeRx;
     } else {
       if (response.statusCode == 401) {
-        // TODOLG
+        Get.to(login_screen());
         securestorage.delete(key: 'email');
         securestorage.delete(key: 'password');
+      } else {
+        print('---------${response.statusCode}--------- registration_service');
       }
+
       throw Exception('Failed to load colleges');
     }
   }

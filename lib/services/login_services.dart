@@ -32,6 +32,8 @@ class AuthService {
         // Handle unauthorized error
         // TODOLG
       } else {
+        print('---------${response.statusCode}--------- registration_service');
+
         // Other error codes
         // Extract and display the error message from the response body
         String errorMessage = parseErrorMessage(response.body);

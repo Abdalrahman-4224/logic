@@ -14,10 +14,10 @@ class login_controller extends GetxController {
   final AuthService authService = AuthService();
 
   void handleLogin() {
-    String email = ConstantVars.email.trim();
-    String password = ConstantVars.password.trim();
+    String? email = ConstantVars.email;
+    String? password = ConstantVars.password;
     isloading.value = true;
-    authService.loginUser(email, password).then((success) {
+    authService.loginUser(email!, password!).then((success) {
       if (success) {
         secureStorage.write(key: 'email', value: email);
         secureStorage.write(key: 'password', value: password);
@@ -31,9 +31,7 @@ class login_controller extends GetxController {
       }
     }).catchError((error) async {
       isloading.value = false;
-      await mydialog(
-          title: 'خطأ في تسجيل الدخول',
-          error: "خطأ في تسجيل الدخول الدخول حاول في وقت اخر");
+      print('-------------$error-----------');
     }).whenComplete(() {
       isloading.value = false;
     });

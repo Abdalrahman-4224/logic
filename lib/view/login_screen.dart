@@ -30,10 +30,10 @@ class login_screen extends StatelessWidget {
                     mytextfield(context,
                         hinttext: 'البريد الاكتروني',
                         icon: Icons.email,
-                        onchanged: (value) => ConstantVars.email.trim()),
+                        onchanged: (value) => ConstantVars.email),
                     passwordCard_1(
                       hintext: 'كلمة المرور',
-                      onchanged: (value) => ConstantVars.password.trim(),
+                      onchanged: (value) => ConstantVars.password,
                     ),
                     CheckboxListTile(
                       title: Directionality(
@@ -74,7 +74,10 @@ class login_screen extends StatelessWidget {
                     Visibility(
                       visible: _controller.isCheked.value,
                       child: blue_login_button(context, 'تسجيل دخول', () {
-                        print('${_controller.isCheked.value}');
+                        print(
+                          ConstantVars.email,
+                        );
+                        print(ConstantVars.password);
                         _controller.handleLogin();
                       }),
                     ),

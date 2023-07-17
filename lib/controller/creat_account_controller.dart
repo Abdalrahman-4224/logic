@@ -20,9 +20,9 @@ class creat_account_controller extends GetxController {
 
   void handleRegistration() {
     print('called');
-    String email = ConstantVars.email;
-    String password = ConstantVars.password;
-    String username = ConstantVars.username;
+    String? email = ConstantVars.email;
+    String? password = ConstantVars.password;
+    String? username = ConstantVars.username;
 
     if (wrongemailentered == false &&
         wrongpassowrdentered == false &&
@@ -30,7 +30,7 @@ class creat_account_controller extends GetxController {
       // You can add more specific password validation rules if needed
       isloading.value = true;
       authService
-          .registerUser(email: email, password: password, username: username)
+          .registerUser(email: email!, password: password!, username: username!)
           .then((success) {
         if (success) {
           myerror('error2');
@@ -48,7 +48,7 @@ class creat_account_controller extends GetxController {
         isloading.value = false;
         if (error is String) {
           myerror('error4');
-          print(error);
+          print('---------$error');
           // Handle specific error (e.g., conflict error)
           if (error.contains('conflict')) {
             myerror('error5');
