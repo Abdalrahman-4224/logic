@@ -14,10 +14,14 @@ class login_controller extends GetxController {
   final AuthService authService = AuthService();
 
   void handleLogin() {
-    String? email = ConstantVars.email;
-    String? password = ConstantVars.password;
+    print('handlelogin called');
+
+    String email = ConstantVars.email;
+    String password = ConstantVars.password;
+    print(email);
+    print(password);
     isloading.value = true;
-    authService.loginUser(email!, password!).then((success) {
+    authService.loginservice(email, password).then((success) {
       if (success) {
         secureStorage.write(key: 'email', value: email);
         secureStorage.write(key: 'password', value: password);

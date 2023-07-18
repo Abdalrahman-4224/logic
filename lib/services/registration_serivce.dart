@@ -10,13 +10,18 @@ class AuthService {
       {required String email,
       required String username,
       required String password}) async {
+    print('registeruser called ');
+    print(ConstantVars.username);
+    print(ConstantVars.email);
+    print(ConstantVars.password);
+    print(ConstantVars.confirmedpassowrd);
     String url = '$api/signup';
     final response = await http.post(Uri.parse(url), body: {
-      'username': username,
-      'email': email,
-      'password': password,
+      "username": username,
+      "email": email,
+      "password": password,
     });
-    if (response.statusCode == 200) {
+    if ((response.statusCode >= 200) && (response.statusCode < 299)) {
       final jsondata = json.decode(response.body);
       final String bearerToken = jsondata['token'];
       await secureStorage.write(key: 'Bearer Token', value: bearerToken);

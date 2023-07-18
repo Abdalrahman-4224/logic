@@ -19,10 +19,14 @@ class creat_account_controller extends GetxController {
   final formKey = GlobalKey<FormState>();
 
   void handleRegistration() {
-    print('called');
-    String? email = ConstantVars.email;
-    String? password = ConstantVars.password;
-    String? username = ConstantVars.username;
+    print('handleregistration called ');
+    print(ConstantVars.username);
+    print(ConstantVars.email);
+    print(ConstantVars.password);
+    print(ConstantVars.confirmedpassowrd);
+    String email = ConstantVars.email;
+    String password = ConstantVars.password;
+    String username = ConstantVars.username;
 
     if (wrongemailentered == false &&
         wrongpassowrdentered == false &&
@@ -30,7 +34,7 @@ class creat_account_controller extends GetxController {
       // You can add more specific password validation rules if needed
       isloading.value = true;
       authService
-          .registerUser(email: email!, password: password!, username: username!)
+          .registerUser(email: email, password: password, username: username)
           .then((success) {
         if (success) {
           myerror('error2');
@@ -45,6 +49,7 @@ class creat_account_controller extends GetxController {
           // Display error message or perform any necessary actions
         }
       }).catchError((error) async {
+        print('---------$error');
         isloading.value = false;
         if (error is String) {
           myerror('error4');

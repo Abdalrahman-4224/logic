@@ -23,6 +23,7 @@ class Profile_screen extends StatelessWidget {
         secureStorage.read(key: 'collegetittle');
     final Future<String?> branchtittle =
         secureStorage.read(key: 'branchtittle');
+    final Future<String?> email = secureStorage.read(key: 'email');
     return Scaffold(
       appBar: AppBar(
           elevation: 0,
@@ -69,7 +70,24 @@ class Profile_screen extends StatelessWidget {
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.06,
                 ),
-                line(),
+                Stack(children: [
+                  line(),
+                  Center(
+                    child: FutureBuilder(
+                      future: email,
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          return Text(
+                            snapshot.data ?? '',
+                            style: TextStyle(color: Colors.black),
+                          );
+                        } else {
+                          return Text('loading...');
+                        }
+                      },
+                    ),
+                  )
+                ]),
               ],
             ),
             Column(
@@ -118,10 +136,39 @@ class Profile_screen extends StatelessWidget {
                       Directionality(
                         textDirection: TextDirection.rtl,
                         //TODO university ,college and branch tittle showing to the user
-                        child: mytextbold('universitytittle', 14, Colors.black),
+                        child: FutureBuilder(
+                            future: universitytittle,
+                            builder: (context, snapshot) {
+                              if (snapshot.hasData) {
+                                return mytextbold(
+                                    snapshot.data ?? '', 14, Colors.black);
+                              } else {
+                                return Text('Loading...');
+                              }
+                            }),
                       ),
-                      mytextnormal('collegetittle', 12, Colors.black),
-                      mytextnormal('branchtittle', 12, Colors.black),
+                      FutureBuilder(
+                        future: collegetittle,
+                        builder: (context, snapshot) {
+                          if (snapshot.hasData) {
+                            return mytextbold(
+                                snapshot.data ?? '', 12, Colors.black);
+                          } else {
+                            return Text('loading...');
+                          }
+                        },
+                      ),
+                      FutureBuilder(
+                        future: branchtittle,
+                        builder: (context, snapshot) {
+                          if (snapshot.hasData) {
+                            return mytextbold(
+                                snapshot.data ?? '', 12, Colors.black);
+                          } else {
+                            return Text('loading...');
+                          }
+                        },
+                      ),
                     ],
                   )
                 ]),

@@ -8,7 +8,10 @@ import 'package:get/get.dart';
 //  Services
 class AuthService {
   FlutterSecureStorage secureStorage = const FlutterSecureStorage();
-  Future<bool> loginUser(String email, String password) async {
+  Future<bool> loginservice(String email, String password) async {
+    print('loginservice called');
+    print(email);
+    print(password);
     final url = Uri.parse('$api/login'); // Replace with your API endpoint
     final response = await http.post(
       url,

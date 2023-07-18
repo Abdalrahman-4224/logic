@@ -29,11 +29,14 @@ class login_screen extends StatelessWidget {
                         child: mytextbold('تسجيل الدخول', 30, Colors.black)),
                     mytextfield(context,
                         hinttext: 'البريد الاكتروني',
-                        icon: Icons.email,
-                        onchanged: (value) => ConstantVars.email),
+                        icon: Icons.email, onchanged: ((value) {
+                      ConstantVars.email = value;
+                    })),
                     passwordCard_1(
                       hintext: 'كلمة المرور',
-                      onchanged: (value) => ConstantVars.password,
+                      onchanged: ((value) {
+                        ConstantVars.password = value;
+                      }),
                     ),
                     CheckboxListTile(
                       title: Directionality(

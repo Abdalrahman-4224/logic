@@ -63,6 +63,30 @@ class _Course_screenState extends State<Course_screen> {
                 }, imageurl: video.imageurl);
               },
             ),
+          ),
+          Container(
+            width: 380,
+            height: 80,
+            child: Directionality(
+              textDirection: TextDirection.rtl,
+              child: Center(
+                child: Row(children: [
+                  mytextbold('//TODObuthere the price from api د.ع ', 21,
+                      Colors.black),
+                  GestureDetector(
+                    onTap: () {
+                      openTelegramChat(Cid, 'courseName', 'telegramUser');
+                      //TODO DO THE TELEGRAM METHOD ABOVE
+                    },
+                    child: Container(
+                      height: 42,
+                      width: 230,
+                      child: mytextbold("انضم الان", 17.5, Color(0xff0e4f8b)),
+                    ),
+                  )
+                ]),
+              ),
+            ),
           )
         ],
       )),
