@@ -3,10 +3,9 @@ import 'package:logic_study/services/branches_services.dart';
 import 'package:logic_study/models/branches_model.dart';
 
 class BranchesController extends GetxController {
-  final BranchesServices apiService =
-      BranchesServices(); //  API service instance
-  late RxList<BranchesModel>? branchesList =
-      RxList(); // Reactive list of branches
+  final BranchesServices apiService = BranchesServices();
+  RxList<dynamic>? branchesList; // Declare the list as nullable
+
   @override
   void onInit() {
     fetchbranches();
@@ -16,7 +15,13 @@ class BranchesController extends GetxController {
   Future<void> fetchbranches() async {
     try {
       final branchdata = await apiService.fetchBranches();
-      branchesList?.assignAll(branchdata!);
+      print("branches_controller************************$branchdata");
+      if (branchdata != null) {
+        // Assign the list only if it's not null
+        branchesList = branchdata.obs;
+      } else {
+        // Handle the null case here (e.g., show an error message or fallback)
+      }
     } catch (error) {
       print(
           '---------------------------error------------------------(branches_controller)');

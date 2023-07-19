@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
           const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
         ],
       ),
-      home: Creat_account_screen(),
+      home: TemproraryHompageScreen(),
       getPages: [
         GetPage(name: Home_screen.id, page: () => Home_screen()),
         GetPage(name: Course_screen.id, page: () => const Course_screen()),

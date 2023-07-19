@@ -1,7 +1,7 @@
 class Course_model {
-  final String id;
-  final String imageurl;
-  final String title;
+  final String? id;
+  final String? imageurl;
+  final String? title;
 
   Course_model({
     required this.title,

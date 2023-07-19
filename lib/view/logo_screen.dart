@@ -24,7 +24,7 @@ class _Logo_screenState extends State<Logo_screen> {
   @override
   void initState() {
     super.initState();
-    universitycontroller.fetchUniversities();
+    universitycontroller.CfetchUniversities();
     branchesController.fetchbranches();
     collegesController.fetchcolleges();
 

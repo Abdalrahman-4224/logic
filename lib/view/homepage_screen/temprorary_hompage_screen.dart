@@ -54,14 +54,14 @@ class TemproraryHompageScreen extends StatelessWidget {
                   padding: const EdgeInsets.all(10.0),
                   child: GestureDetector(
                       onTap: () {
-                        final universities =
-                            _universititesController.universitiesList!.value;
+                        final universitites =
+                            _universititesController.universitiesList.value;
                         final colleges =
                             _collegesController.collegesList!.value;
                         final branches =
                             _branchesController.branchesList!.value;
                         universisitesChoices(context,
-                            universities: universities, ontap: () {
+                            universities: universitites, ontap: () {
                           collegeschoices(context, choices: colleges,
                               onpress: () {
                             brancheschoices(context, branches: branches,
@@ -91,10 +91,10 @@ class TemproraryHompageScreen extends StatelessWidget {
                           context,
                           title: course.title,
                           onpress: () {
-                            Cid = course.id;
+                            Cid = course.id!;
                             Get.toNamed(Course_screen.id);
                           },
-                          imageurl: course.imageurl,
+                          imageurl: course.imageurl!,
                         );
                       },
                     ),

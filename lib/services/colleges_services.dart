@@ -10,17 +10,21 @@ import 'package:logic_study/view/login_screen.dart';
 
 class CollegesServices {
   FlutterSecureStorage securestorage = FlutterSecureStorage();
-  Future<RxList<Colleges_model>> fetchcolleges() async {
+  Future<List<Colleges_model>> fetchcolleges() async {
     final url = Uri.parse('$api/colleage');
-    final token = await securestorage.read(key: 'token');
+    final token =
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFiZDFAZ21haWwuY29tIiwidXNlcklkIjoiNjRiNzA1MjBiZjE0YTY3YTBmMzdhMWE4Iiwicm9sZSI6IlVzZXIiLCJpYXQiOjE2ODk3MTYwMDEsImV4cCI6MTY4OTk3NTIwMX0.xGRMiFzHqpT6WFF2BVF9s51_FLwbhskiGCBD1hQmsFg";
     final headers = {'Authorization': 'Bearer $token'};
     final response = await http.get(url, headers: headers);
     if (response.statusCode == 200) {
-      final data = jsonDecode(response.body) as RxList;
-      final colleges =
+      final data = jsonDecode(response.body);
+      print('CCCCCCCCCCCCCCCCCCCCC${data}cccccccccccccccccccc');
+
+      final data2 =
           data.map((dynamic json) => Colleges_model.fromjson(json)).toList();
-      final collegeRx = RxList<Colleges_model>(colleges);
-      return collegeRx;
+      var colleages = data2.cast<Colleges_model>();
+      print('CCCCCCCCCCCCCCCCCCCCC${colleages}cccccccccccccccccccc');
+      return colleages;
     } else {
       if (response.statusCode == 401) {
         Get.to(login_screen());

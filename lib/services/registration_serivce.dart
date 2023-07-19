@@ -10,10 +10,10 @@ class AuthService {
       {required String email,
       required String username,
       required String password}) async {
-    print('registeruser called ');
-    print(ConstantVars.username);
-    print(ConstantVars.email);
-    print(ConstantVars.password);
+    print('registerservice called ');
+    print(email);
+    print(username);
+    print(password);
     print(ConstantVars.confirmedpassowrd);
     String url = '$api/signup';
     final response = await http.post(Uri.parse(url), body: {
@@ -28,9 +28,11 @@ class AuthService {
 
       return true;
     } else {
+      print('------${response.body}');
+      print(response);
       print('---------${response.statusCode}--------- registration_service');
+      return false;
     }
-    return false;
   }
 
   void myerror(String text) => print(text);

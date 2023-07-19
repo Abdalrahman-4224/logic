@@ -111,25 +111,26 @@ Future<dynamic> mydialog({required String title, required String error}) {
 
 Future<dynamic> universisitesChoices(
   BuildContext context, {
-  required List<UniversitiesModel> universities,
+  required List<dynamic> universities,
   required VoidCallback ontap,
 }) {
   return showModalBottomSheet(
-      backgroundColor: Colors.transparent,
-      context: context,
-      builder: (BuildContext context) {
-        return Stack(
-          children: [
-            Container(
-              padding: EdgeInsets.only(
-                  left: 20, top: 45 + 20, right: 20, bottom: 20),
-              margin: EdgeInsets.only(top: 45, right: 15, left: 15, bottom: 15),
-              decoration: BoxDecoration(
-                shape: BoxShape.rectangle,
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: Column(children: [
+    backgroundColor: Colors.transparent,
+    context: context,
+    builder: (BuildContext context) {
+      return Stack(
+        children: [
+          Container(
+            padding:
+                EdgeInsets.only(left: 20, top: 45 + 20, right: 20, bottom: 20),
+            margin: EdgeInsets.only(top: 45, right: 15, left: 15, bottom: 15),
+            decoration: BoxDecoration(
+              shape: BoxShape.rectangle,
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: Column(
+              children: [
                 mytextbold('اختار الجامعة', 20, Colors.black),
                 Expanded(
                   child: GridView.builder(
@@ -138,50 +139,71 @@ Future<dynamic> universisitesChoices(
                     ),
                     itemCount: universities.length,
                     itemBuilder: (context, index) {
-                      return GestureDetector(
-                        onTap: () {
-                          ontap();
-                          secureStorage.write(
-                              key: 'universitytittle',
-                              value: universities[index].title);
-                          Choices.universityid = universities[index].id;
-                        },
-                        child: SizedBox(
-                          height: 73.69,
-                          width: 47,
-                          child: Column(children: [
-                            CircleAvatar(
-                              radius: 40,
-                              child:
-                                  Image.network(universities[index].imageurl),
+                      final university = universities[index];
+                      if (university != null &&
+                          university is UniversitiesModel) {
+                        return GestureDetector(
+                          onTap: () {
+                            ontap();
+                            secureStorage.write(
+                                key: 'universitytittle',
+                                value: university.universityName);
+                            Choices.universityid = university.id!;
+                          },
+                          child: SizedBox(
+                            height: 73.69,
+                            width: 47,
+                            child: Column(
+                              children: [
+                                CircleAvatar(
+                                  radius: 23,
+                                  child: Image.network(
+                                    university.universityImgUrl!,
+                                    errorBuilder: (context, error, stackTrace) {
+                                      // Handle error image here
+                                      return Icon(Icons.error);
+                                    },
+                                  ),
+                                ),
+                                mytextnormal(
+                                  university.universityName!,
+                                  10.92,
+                                  Colors.black,
+                                ),
+                              ],
                             ),
-                            mytextnormal(
-                                universities[index].title, 17, Colors.black)
-                          ]),
-                        ),
-                      );
+                          ),
+                        );
+                      } else {
+                        return SizedBox
+                            .shrink(); // Return an empty widget if the university data is invalid
+                      }
                     },
                   ),
                 )
-              ]),
+              ],
             ),
-            Positioned(
-              left: 20,
-              right: 20,
-              child: CircleAvatar(
-                backgroundColor: Colors.white,
-                radius: 55,
-                child: ClipRRect(
-                    borderRadius: BorderRadius.all(Radius.circular(55)),
-                    child: CircleAvatar(
-                        radius: 45,
-                        backgroundColor: Color(0xffe9e9e9),
-                        child: SvgPicture.asset("assets/icons/logo.svg"))),
+          ),
+          Positioned(
+            left: 20,
+            right: 20,
+            child: CircleAvatar(
+              backgroundColor: Colors.white,
+              radius: 55,
+              child: ClipRRect(
+                borderRadius: BorderRadius.all(Radius.circular(55)),
+                child: CircleAvatar(
+                  radius: 45,
+                  backgroundColor: Color(0xffe9e9e9),
+                  child: SvgPicture.asset("assets/icons/logo.svg"),
+                ),
               ),
             ),
-          ],
-        );
-      });
+          ),
+        ],
+      );
+    },
+  );
 }
 
 Future<dynamic> collegeschoices(BuildContext context,
@@ -255,7 +277,7 @@ Future<dynamic> collegeschoices(BuildContext context,
 }
 
 Future<dynamic> brancheschoices(BuildContext context,
-    {required List<BranchesModel> branches, required VoidCallback onpress}) {
+    {required List<dynamic> branches, required VoidCallback onpress}) {
   return showModalBottomSheet(
       elevation: 0,
       backgroundColor: Colors.transparent,

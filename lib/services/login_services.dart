@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:logic_study/constant.dart';
-import 'package:logic_study/view/login_screen.dart';
-import 'package:get/get.dart';
 
 //  Services
 class AuthService {

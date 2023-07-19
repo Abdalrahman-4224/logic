@@ -1,17 +1,19 @@
 class UniversitiesModel {
-  final String title;
-  final String id;
-  final String imageurl;
+  final String? universityName;
+  final String? id;
+  final String? universityImgUrl;
+
   UniversitiesModel({
     required this.id,
-    required this.imageurl,
-    required this.title,
+    required this.universityImgUrl,
+    required this.universityName,
   });
-  factory UniversitiesModel.fromjson(Map<String, dynamic> json) {
+
+  factory UniversitiesModel.fromJson(Map<String, dynamic> json) {
     return UniversitiesModel(
-      title: json['title'],
-      id: json['id'],
-      imageurl: json['imageurl'],
+      universityName: json['universityName'],
+      id: json['_id'],
+      universityImgUrl: json['universityImgUrl'], // Corrected the key here
     );
   }
 }
