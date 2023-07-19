@@ -10,6 +10,8 @@ class Course_model {
   });
   factory Course_model.fromJson(Map<String, dynamic> json) {
     return Course_model(
-        id: json['id'], imageurl: json['imageurl'], title: json['title']);
+        id: json['_id'],
+        imageurl: json['courseImg'],
+        title: json['courseTitle']);
   }
 }

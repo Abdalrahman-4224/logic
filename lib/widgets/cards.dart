@@ -238,18 +238,18 @@ Future<dynamic> collegeschoices(BuildContext context,
                         child: Container(
                             margin: EdgeInsets.only(top: 5, bottom: 5),
                             color: Color(0xffe9e9e9),
-                            height: 420,
-                            width: 390,
+                            height: 39,
+                            width: 333,
                             child: TextButton(
                               onPressed: () {
                                 onpress();
                                 secureStorage.write(
                                     key: 'collegetittle',
-                                    value: choices[index].collegetitle);
-                                Choices.collegeid = choices[index].collegeid;
+                                    value: choices[index].colleageName!);
+                                Choices.collegeid = choices[index].id!;
                               },
-                              child: mytextbold(choices[index].collegetitle, 20,
-                                  Colors.black),
+                              child: mytextbold(choices[index].colleageName!,
+                                  16, Colors.black),
                             )),
                       );
                     },
@@ -308,8 +308,8 @@ Future<dynamic> brancheschoices(BuildContext context,
                         child: Container(
                             margin: EdgeInsets.only(top: 5, bottom: 5),
                             color: Color(0xffe9e9e9),
-                            height: 420,
-                            width: 390,
+                            height: 39,
+                            width: 333,
                             child: TextButton(
                               onPressed: () {
                                 onpress;
@@ -319,7 +319,7 @@ Future<dynamic> brancheschoices(BuildContext context,
                                 Choices.branchid = branches[index].branchid;
                               },
                               child: mytextbold(branches[index].branchtittle,
-                                  20, Colors.black),
+                                  16, Colors.black),
                             )),
                       );
                     },

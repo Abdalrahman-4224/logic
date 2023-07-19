@@ -18,10 +18,11 @@ class Courseservices {
 
     if ((response.statusCode >= 200) && (response.statusCode <= 299)) {
       print("************${response.statusCode}**************");
-      final data = jsonDecode(response.body) as List<dynamic>;
-      final Courses =
+      final data = jsonDecode(response.body);
+      final data2 =
           data.map((dynamic json) => Course_model.fromJson(json)).toList();
-      print(Courses);
+      final Courses = data2.cast<Course_model>();
+      print('CCCCCCCCCCCCCCCCCCCCCCCCCCCC$Courses CCCCCCCCCCCCCCCCCCCCCCCCCCC');
       return Courses;
     } else {
       if (response.statusCode == 401) {

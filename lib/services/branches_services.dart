@@ -10,15 +10,20 @@ import 'package:logic_study/view/login_screen.dart';
 class BranchesServices {
   FlutterSecureStorage securestorage = FlutterSecureStorage();
 
-  Future<List> fetchBranches() async {
+  Future<List<BranchesModel>> fetchBranches() async {
     final url = Uri.parse('$api/branch');
     final token =
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFiZDFAZ21haWwuY29tIiwidXNlcklkIjoiNjRiNzA1MjBiZjE0YTY3YTBmMzdhMWE4Iiwicm9sZSI6IlVzZXIiLCJpYXQiOjE2ODk3MTYwMDEsImV4cCI6MTY4OTk3NTIwMX0.xGRMiFzHqpT6WFF2BVF9s51_FLwbhskiGCBD1hQmsFg";
     final headers = {'Authorization': 'Bearer $token'};
     final response = await http.get(url, headers: headers);
     if (response.statusCode == 200) {
-      final data = jsonDecode(response.body) as List;
-      return data;
+      final data = jsonDecode(response.body);
+      final data2 =
+          data.map((dynamic json) => BranchesModel.fromjson(json)).toList();
+      final branches = data2.cast<BranchesModel>();
+      print(
+          'BBBBBBBBBBBBBBBBBBBBBBBBB$branches BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB');
+      return branches;
     }
     throw Exception('Failed to load branches');
   }

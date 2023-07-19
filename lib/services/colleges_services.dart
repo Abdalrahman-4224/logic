@@ -18,12 +18,10 @@ class CollegesServices {
     final response = await http.get(url, headers: headers);
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
-      print('CCCCCCCCCCCCCCCCCCCCC${data}cccccccccccccccccccc');
 
       final data2 =
           data.map((dynamic json) => Colleges_model.fromjson(json)).toList();
       var colleages = data2.cast<Colleges_model>();
-      print('CCCCCCCCCCCCCCCCCCCCC${colleages}cccccccccccccccccccc');
       return colleages;
     } else {
       if (response.statusCode == 401) {

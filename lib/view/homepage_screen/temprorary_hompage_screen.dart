@@ -79,14 +79,14 @@ class TemproraryHompageScreen extends StatelessWidget {
             Container(
               margin: const EdgeInsets.all(4),
               height: MediaQuery.of(context).size.height * 0.75,
-              child: _courseController.courses.isEmpty
+              child: _courseController.courses!.isEmpty
                   ? Center(
                       child: Text('error getting courses '),
                     )
                   : ListView.builder(
-                      itemCount: _courseController.courses.length,
+                      itemCount: _courseController.courses!.length,
                       itemBuilder: (context, index) {
-                        final course = _courseController.courses[index];
+                        final course = _courseController.courses![index];
                         return othersbutton(
                           context,
                           title: course.title,
