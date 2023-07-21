@@ -50,6 +50,7 @@ dependencies:
   responsive_framework: ^1.0.0
   flutter_windowmanager: ^0.2.0
   url_launcher: ^6.1.11
+  dio: ^5.3.0
   
 
 dev_dependencies:

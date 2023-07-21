@@ -1,22 +1,19 @@
 import 'package:get/get.dart';
-import 'package:logic_study/models/video.dart';
+import 'package:logic_study/models/video_model.dart';
 import 'package:logic_study/services/video_services.dart';
 
 class Videos_Controller extends GetxController {
-  Video_services Apiservices = Video_services();
-  RxList<Video_Model> video = RxList<Video_Model>();
+  Video_services apiservices = Video_services();
+  Rx<Video_model> video = Rx<Video_model>(Video_model()); // Add initial value
+
   @override
   void onInit() {
-    getvideo();
+    fetchvideos();
     super.onInit();
   }
 
-  Future<void> getvideo() async {
-    try {
-      dynamic videodata = Apiservices.fetchVideos();
-      video.assignAll(videodata);
-    } catch (e) {
-      print('video controller error ');
-    }
+  Future<void> fetchvideos() async {
+    final videodata = await apiservices.fetchVideos();
+    video.value = videodata;
   }
 }

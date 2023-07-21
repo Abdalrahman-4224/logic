@@ -135,7 +135,6 @@ class Profile_screen extends StatelessWidget {
                     children: [
                       Directionality(
                         textDirection: TextDirection.rtl,
-                        //TODO university ,college and branch tittle showing to the user
                         child: FutureBuilder(
                             future: universitytittle,
                             builder: (context, snapshot) {

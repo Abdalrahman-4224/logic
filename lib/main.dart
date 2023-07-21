@@ -12,8 +12,10 @@ import 'package:responsive_framework/responsive_framework.dart';
 import 'view/homepage_screen/home_screen.dart';
 import 'package:dart_vlc/dart_vlc.dart';
 import 'package:get/get.dart';
+import 'package:logic_study/view/question.dart';
 import 'package:logic_study/view/homepage_screen/temprorary_hompage_screen.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:logic_study/view/privcy_screen.dart';
 
 void main() async {
   DartVLC.initialize();
@@ -38,7 +40,7 @@ class MyApp extends StatelessWidget {
           const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
         ],
       ),
-      home: TemproraryHompageScreen(),
+      home: PrivecyScreen(),
       getPages: [
         GetPage(name: Home_screen.id, page: () => Home_screen()),
         GetPage(name: Course_screen.id, page: () => const Course_screen()),

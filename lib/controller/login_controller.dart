@@ -11,33 +11,33 @@ class login_controller extends GetxController {
   FlutterSecureStorage secureStorage = const FlutterSecureStorage();
   RxBool isloading = false.obs;
   RxBool isCheked = false.obs;
-  final AuthService authService = AuthService();
+  final LoginServices authService = LoginServices();
 
-  void handleLogin() {
-    print('handlelogin called');
+  // void handleLogin() {
+  //   print('handlelogin called');
 
-    String email = ConstantVars.email;
-    String password = ConstantVars.password;
-    print(email);
-    print(password);
-    isloading.value = true;
-    authService.loginservice(email, password).then((success) {
-      if (success) {
-        secureStorage.write(key: 'email', value: email);
-        secureStorage.write(key: 'password', value: password);
-        Get.to(() => Home_screen());
-      } else {
-        mydialog(
-            title: 'خطأ في تسجيل الدخول',
-            error: "خطأ في تسجيل الدخول الدخول حاول في وقت اخر");
-        // Handle login failure
-        // Display error message or perform any necessary actions
-      }
-    }).catchError((error) async {
-      isloading.value = false;
-      print('-------------$error-----------');
-    }).whenComplete(() {
-      isloading.value = false;
-    });
-  }
+  //   String email = ConstantVars.email!;
+  //   String password = ConstantVars.password!;
+  //   print(email);
+  //   print(password);
+  //   isloading.value = true;
+  //   authService.loginUser(email, password).then((success) {
+  //     if (success) {
+  //       secureStorage.write(key: 'email', value: email);
+  //       secureStorage.write(key: 'password', value: password);
+  //       Get.to(() => Home_screen());
+  //     } else {
+  //       mydialog(
+  //           title: 'خطأ في تسجيل الدخول',
+  //           error: "خطأ في تسجيل الدخول الدخول حاول في وقت اخر");
+  //       // Handle login failure
+  //       // Display error message or perform any necessary actions
+  //     }
+  //   }).catchError((error) async {
+  //     isloading.value = false;
+  //     print('-------------$error-----------');
+  //   }).whenComplete(() {
+  //     isloading.value = false;
+  //   });
+  // }
 }

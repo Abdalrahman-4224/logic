@@ -1,98 +1,102 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:logic_study/widgets/coursescreen_cards.dart';
 import 'package:logic_study/constant.dart';
 import 'package:logic_study/widgets/cards.dart';
-import 'package:logic_study/models/video.dart';
+import 'package:logic_study/models/video_model.dart';
 import 'package:logic_study/services/video_services.dart';
 import 'package:logic_study/controller/videos_controller.dart';
 
-class Course_screen extends StatefulWidget {
+class Course_screen extends StatelessWidget {
   static String id = '/course_screen';
 
   const Course_screen({super.key});
-  @override
-  State<Course_screen> createState() => _Course_screenState();
-}
-
-class _Course_screenState extends State<Course_screen> {
-  final Videos_Controller _controller = Videos_Controller();
-  static String id = 'course_screen';
-  final bool _showvideo = false;
-
-  final List<Video_Model> _videos = [];
-  Video_services video = Video_services();
-
-  @override
-  void dispose() {
-    Ccontroller.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
+    final Videos_Controller controller = Get.put(Videos_Controller());
+    final RxBool showvideo = false.obs;
     return SafeArea(
       child: Scaffold(
-          body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          SizedBox(
-            width: MediaQuery.of(context).size.width * 0.5,
-          ),
-          //show to video player if the user pressed on the video button
-          Stack(children: [
-            courseimage(context),
-            if (_showvideo)
-              Center(
-                child: videoscreen(),
-              ),
-          ]),
-
-          Container(
-            margin: EdgeInsets.all(10),
-            width: 375,
-            child: ListView.builder(
-              itemBuilder: (context, index) {
-                final video = _controller.video[index];
-                itemCount:
-                _controller.video.length;
-
-                return othersbutton(context, title: video.title, onpress: () {
-                  Curl = video.videoUrl;
-                }, imageurl: video.imageurl);
-              },
-            ),
-          ),
-          Container(
-            width: 380,
-            height: 80,
-            child: Directionality(
-              textDirection: TextDirection.rtl,
-              child: Center(
-                child: Row(children: [
-                  mytextbold('//TODObuthere the price from api د.ع ', 21,
-                      Colors.black),
-                  GestureDetector(
-                    onTap: () {
-                      openTelegramChat(Cid, 'courseName', 'telegramUser');
-                      //TODO DO THE TELEGRAM METHOD ABOVE
-                    },
+        body: Obx(
+          () => Stack(
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.5,
+                  ),
+                  //show to video player if the user pressed on the video button
+                  Stack(children: [
+                    courseimage(context),
+                    if (showvideo.value) Center(child: videoscreen()),
+                  ]),
+                  Expanded(
+                    // Add the Expanded widget here
                     child: Container(
-                      height: 42,
-                      width: 230,
-                      child: mytextbold("انضم الان", 17.5, Color(0xff0e4f8b)),
+                      margin: EdgeInsets.all(10),
+                      height: 460,
+                      width: 375,
+
+                      // child: ListView.builder(
+                      //   itemCount: controller.video!.length,
+                      //   itemBuilder: (context, index) {
+                      //     final video = controller.video![index];
+
+                      //     return othersbutton(
+                      //       context,
+                      //       title: video.title,
+                      //       onpress: () {
+                      //         Curl = video.videoUrl!;
+                      //       },
+                      //       imageurl: video.imageurl!,
+                      //     );
+                      //   },
+                      // ),
                     ),
-                  )
-                ]),
+                  ),
+                ],
               ),
-            ),
-          )
-        ],
-      )),
+              Visibility(
+                visible: !cisfree,
+                child: SizedBox(
+                  width: 380,
+                  height: 80,
+                  child: Directionality(
+                    textDirection: TextDirection.rtl,
+                    child: Center(
+                      child: Row(children: [
+                        mytextbold(
+                            '${Course.coursePrice} د.ع ', 21, Colors.black),
+                        GestureDetector(
+                          onTap: () {
+                            openTelegramChat(
+                                Course.cid!, 'courseName', 'telegramUser');
+                            //TODO DO THE TELEGRAM METHOD ABOVE
+                          },
+                          child: Container(
+                            height: 42,
+                            width: 230,
+                            child: mytextbold(
+                                "انضم الان", 17.5, Color(0xff0e4f8b)),
+                          ),
+                        )
+                      ]),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
+
 
 // class Coursehomepage extends StatelessWidget {
 //   bool _showvideo=false;

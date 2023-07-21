@@ -16,13 +16,8 @@ class Coursecontroller extends GetxController {
   Future<void> fetchCourses() async {
     print('coursescontroller called');
 
-    try {
-      final coursesData = await apiService.fetchcourses();
-      courses?.assignAll(coursesData);
-      print(courses);
-    } catch (error) {
-      // Handle error
-      print('Failed to fetch courses: $error');
-    }
+    final coursesData = await apiService.fetchcourses();
+    courses?.assignAll(coursesData);
+    print('TTTTTTTTTTTTTTTTT ${courses![1].title} TTTTTTTTTTTTTTTTTTT');
   }
 }

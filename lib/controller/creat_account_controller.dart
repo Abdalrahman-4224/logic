@@ -15,87 +15,101 @@ class creat_account_controller extends GetxController {
   RxBool wrongpassowrdentered = false.obs;
   RxBool wrongusernameentered = false.obs;
   final FlutterSecureStorage secureStorage = const FlutterSecureStorage();
-  final AuthService authService = AuthService();
+  final RegistrationService authService = RegistrationService();
   final formKey = GlobalKey<FormState>();
 
-  void handleRegistration() {
-    print('handleregistration called ');
-    print(ConstantVars.username);
-    print(ConstantVars.email);
-    print(ConstantVars.password);
-    print(ConstantVars.confirmedpassowrd);
-    String email = ConstantVars.email;
-    String password = ConstantVars.password;
-    String username = ConstantVars.username;
+  // void handleRegistration() {
+  //   print('handleregistration called ');
+  //   print(ConstantVars.username);
+  //   print(ConstantVars.email);
+  //   print(ConstantVars.password);
+  //   print(ConstantVars.confirmedpassowrd);
+  //   String email = ConstantVars.email!;
+  //   String password = ConstantVars.password!;
+  //   String username = ConstantVars.username!;
 
-    if (wrongemailentered == false &&
-        wrongpassowrdentered == false &&
-        wrongusernameentered == false) {
-      // You can add more specific password validation rules if needed
-      isloading.value = true;
-      authService
-          .registerUser(email: email, password: password, username: username)
-          .then((success) {
-        if (success) {
-          myerror('error2');
-          secureStorage.write(key: 'email', value: email);
-          secureStorage.write(key: 'password', value: password);
-          secureStorage.write(key: 'username', value: username);
-          Get.to(() => Home_screen());
-          isloading.value = false;
-        } else {
-          myerror('error3');
-          // Handle registration failure
-          // Display error message or perform any necessary actions
-        }
-      }).catchError((error) async {
-        print('---------$error');
-        isloading.value = false;
-        if (error is String) {
-          myerror('error4');
-          print('---------$error');
-          // Handle specific error (e.g., conflict error)
-          if (error.contains('conflict')) {
-            myerror('error5');
-            // Handle conflict error
-            // Display error message or perform any necessary actions
-          }
-        } else {
-          myerror('error7');
-          // Handle general error
-          // Display error message or perform any necessary actions
-          await Get.dialog(AlertDialog(
-            title: const Text('Registration Error'),
-            content: const Text('Failed to register. Please try again later.'),
-            actions: [
-              TextButton(
-                onPressed: () => Get.back(),
-                child: const Text('OK'),
-              ),
-            ],
-          ));
-        }
-      }).whenComplete(() {
-        isloading.value = false;
-      });
-    } else {
-      Get.dialog(AlertDialog(
-        title: mytextnormal('خطأ في التسجيل', 12, Colors.red),
-        content:
-            mytextnormal('قم بأدخال المعلومات بصورة صحيحة', 15, Colors.black),
-        actions: [
-          TextButton(
-            onPressed: () => Get.back(),
-            child: mytextnormal('تم', 12, Colors.blue),
-          ),
-        ],
-      ));
-    }
-  }
+  //   if (wrongemailentered == false &&
+  //       wrongpassowrdentered == false &&
+  //       wrongusernameentered == false) {
+  //     // You can add more specific password validation rules if needed
+  //     isloading.value = true;
+  //     authService
+  //         .registerUser(email: email, password: password, username: username)
+  //         .then((success) {
+  //       if (success) {
+  //         myerror('error2');
+  //         secureStorage.write(key: 'email', value: email);
+  //         secureStorage.write(key: 'password', value: password);
+  //         secureStorage.write(key: 'username', value: username);
+  //         Get.to(() => Home_screen());
+  //         isloading.value = false;
+  //       } else {
+  //         myerror('error3');
+  //         // Handle registration failure
+  //         // Display error message or perform any necessary actions
+  //       }
+  //     }).catchError((error) async {
+  //       print('---------$error');
+  //       isloading.value = false;
+  //       if (error is String) {
+  //         myerror('error4');
+  //         print('---------$error');
+  //         // Handle specific error (e.g., conflict error)
+  //         if (error.contains('conflict')) {
+  //           myerror('error5');
+  //           // Handle conflict error
+  //           // Display error message or perform any necessary actions
+  //         }
+  //       } else {
+  //         myerror('error7');
+  //         // Handle general error
+  //         // Display error message or perform any necessary actions
+  //         await Get.dialog(AlertDialog(
+  //           title: const Text('Registration Error'),
+  //           content: const Text('Failed to register. Please try again later.'),
+  //           actions: [
+  //             TextButton(
+  //               onPressed: () => Get.back(),
+  //               child: const Text('OK'),
+  //             ),
+  //           ],
+  //         ));
+  //       }
+  //     }).whenComplete(() {
+  //       isloading.value = false;
+  //     });
+  //   } else {
+  //     Get.dialog(AlertDialog(
+  //       title: mytextnormal('خطأ في التسجيل', 12, Colors.red),
+  //       content:
+  //           mytextnormal('قم بأدخال المعلومات بصورة صحيحة', 15, Colors.black),
+  //       actions: [
+  //         TextButton(
+  //           onPressed: () => Get.back(),
+  //           child: mytextnormal('تم', 12, Colors.blue),
+  //         ),
+  //       ],
+  //     ));
+  //   }
+  // }
 
   void myerror(String text) => print(
       '--------------------$text---------------(creat_account_controller)');
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //TODO perfom validation from the below class and understand it well 

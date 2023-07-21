@@ -8,6 +8,7 @@ import 'package:logic_study/constant.dart';
 import 'package:logic_study/controller/Universitites_controller.dart';
 import 'package:logic_study/controller/colleges_controller.dart';
 import 'package:logic_study/controller/branches_controller.dart';
+import 'package:logic_study/widgets/coursescreen_cards.dart';
 
 class TemproraryHompageScreen extends StatelessWidget {
   final Coursecontroller _courseController = Get.put(Coursecontroller());
@@ -66,6 +67,7 @@ class TemproraryHompageScreen extends StatelessWidget {
                               onpress: () {
                             brancheschoices(context, branches: branches,
                                 onpress: () {
+                              Get.to(TemproraryHompageScreen());
                               //TODO do the post event
                             });
                           });
@@ -76,28 +78,41 @@ class TemproraryHompageScreen extends StatelessWidget {
                 ),
               ],
             ),
-            Container(
-              margin: const EdgeInsets.all(4),
-              height: MediaQuery.of(context).size.height * 0.75,
-              child: _courseController.courses!.isEmpty
-                  ? Center(
-                      child: Text('error getting courses '),
-                    )
-                  : ListView.builder(
-                      itemCount: _courseController.courses!.length,
-                      itemBuilder: (context, index) {
-                        final course = _courseController.courses![index];
-                        return othersbutton(
-                          context,
-                          title: course.title,
-                          onpress: () {
-                            Cid = course.id!;
-                            Get.toNamed(Course_screen.id);
-                          },
-                          imageurl: course.imageurl!,
-                        );
-                      },
-                    ),
+            Obx(
+              () => Container(
+                margin: const EdgeInsets.all(4),
+                height: MediaQuery.of(context).size.height * 0.75,
+                child: _courseController.courses!.isEmpty
+                    ? Center(
+                        child: Text('error getting courses '),
+                      )
+                    : ListView.builder(
+                        itemCount: _courseController.courses!.length,
+                        itemBuilder: (context, index) {
+                          final course = _courseController.courses![index];
+
+                          return othersbutton(
+                            context,
+                            title: course.title,
+                            onpress: () {
+                              Course.isfree = course.iscoursefree;
+                              if (Course.isfree == 1)
+                                cisfree = true;
+                              else
+                                cisfree = false;
+
+                              Course.tittle = course.title;
+                              Course.coursePrice = course.coursePrice;
+                              Course.courseDes = course.courseDescription;
+
+                              Course.cid = course.id!;
+                              Get.to(Course_screen());
+                            },
+                            imageurl: course.imageurl!,
+                          );
+                        },
+                      ),
+              ),
             )
           ],
         )));

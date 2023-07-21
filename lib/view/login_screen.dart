@@ -4,17 +4,20 @@ import 'package:logic_study/controller/login_controller.dart';
 import 'package:logic_study/view/creat_account_screen.dart';
 import 'package:logic_study/widgets/cards.dart';
 import 'package:logic_study/widgets/login_cards.dart';
+import 'package:logic_study/services/login_services.dart';
 import 'package:get/get.dart';
 
 class login_screen extends StatelessWidget {
   static String id = '/login_screen';
-  login_screen({super.key});
+  const login_screen({super.key});
 
-  final _controller = Get.put(login_controller());
-
-  final bool _obscureText = true;
   @override
   Widget build(BuildContext context) {
+    final _controller = Get.put(login_controller());
+
+    final bool _obscureText = true;
+    LoginServices loginServices = LoginServices();
+
     return Scaffold(
         backgroundColor: const Color(0xffefeff4),
         body: Obx(() => Stack(
@@ -81,7 +84,8 @@ class login_screen extends StatelessWidget {
                           ConstantVars.email,
                         );
                         print(ConstantVars.password);
-                        _controller.handleLogin();
+                        // _controller.handleLogin();
+                        loginServices.loginUser();
                       }),
                     ),
                     SizedBox(

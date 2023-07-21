@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:logic_study/controller/courses_controller.dart';
+import 'package:logic_study/controller/videos_controller.dart';
 import 'package:logic_study/view/homepage_screen/home_screen.dart';
 import 'package:get/get.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -21,12 +23,15 @@ class _Logo_screenState extends State<Logo_screen> {
       Get.put(UniversititesController());
   BranchesController branchesController = Get.put(BranchesController());
   CollegesController collegesController = Get.put(CollegesController());
+  Coursecontroller coursecontroller = Get.put(Coursecontroller());
+  Videos_Controller videos_controller = Get.put(Videos_Controller());
   @override
   void initState() {
     super.initState();
     universitycontroller.CfetchUniversities();
     branchesController.fetchbranches();
     collegesController.fetchcolleges();
+    coursecontroller.fetchCourses();
 
     // Navigate to the home screen after 2 seconds
     Timer(const Duration(seconds: 1), () {

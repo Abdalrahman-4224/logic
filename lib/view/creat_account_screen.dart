@@ -5,6 +5,7 @@ import 'package:logic_study/controller/creat_account_controller.dart';
 import 'package:logic_study/widgets/cards.dart';
 import 'package:logic_study/widgets/login_cards.dart';
 import 'package:get/get.dart';
+import 'package:logic_study/services/registration_serivce.dart';
 
 class Creat_account_screen extends StatelessWidget {
   static String id = '/Creat_account_screen';
@@ -14,6 +15,7 @@ class Creat_account_screen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    RegistrationService register = RegistrationService();
     return Scaffold(
       backgroundColor: Color(0xffefeff5),
       body: SafeArea(
@@ -58,6 +60,12 @@ class Creat_account_screen extends StatelessWidget {
                         hinttext: "اسم الحساب",
                         icon: Icons.account_circle_outlined,
                         onchanged: ((value) {
+                      for (int i = 0; i < value.length; i++) {
+                        if (value.codeUnitAt(i) >= 65 &&
+                            value.codeUnitAt(i) <= 90) {
+                          _controller.wrongusernameentered.value == true;
+                        }
+                      }
                       ConstantVars.username = value;
                       if (value.length < 6 || value.isEmpty || value == null) {
                         _controller.wrongusernameentered.value = true;
@@ -98,6 +106,7 @@ class Creat_account_screen extends StatelessWidget {
                     passwordCard_1(
                       onchanged: ((value) {
                         ConstantVars.password = value.trim();
+
                         if (value.length < 11 || value.isEmpty) {
                           _controller.wrongpassowrdentered.value = true;
                         } else {
@@ -179,7 +188,9 @@ class Creat_account_screen extends StatelessWidget {
                             ConstantVars.confirmedpassowrd) {
                           _controller.dontmatch.value = true;
                         } else {
-                          _controller.handleRegistration();
+                          // _controller.handleRegistration();
+                          _controller.dontmatch.value = false;
+                          register.registerUser();
                         }
                       }),
                     ),

@@ -453,17 +453,17 @@ SizedBox space() {
   );
 }
 
-ClipRRect othersbutton(BuildContext context,
+GestureDetector othersbutton(BuildContext context,
     {required title, required VoidCallback onpress, required String imageurl}) {
-  return ClipRRect(
-    borderRadius: BorderRadius.circular(10),
-    child: GestureDetector(
-      onTap: onpress,
+  return GestureDetector(
+    onTap: onpress,
+    child: ClipRRect(
+      borderRadius: BorderRadius.circular(10),
       child: Container(
-        color: Color(0xFFD3D3D3),
+        color: Colors.white,
         margin: EdgeInsets.all(8),
-        width: MediaQuery.of(context).size.width * 0.8,
-        height: MediaQuery.of(context).size.height * 0.13,
+        width: 338,
+        height: 90,
         child: Directionality(
           textDirection: TextDirection.rtl,
           child: ClipRRect(
@@ -473,8 +473,11 @@ ClipRRect othersbutton(BuildContext context,
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.circular(10),
-                  child: Image.asset(
+                  child: Image.network(
                     imageurl,
+                    height: 80,
+                    width: 143,
+                    fit: BoxFit.cover,
                   ),
                 ),
                 Padding(
