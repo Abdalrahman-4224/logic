@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_windowmanager/flutter_windowmanager.dart';
+import 'package:logic_study/services/onecoursebyId_services.dart';
 import 'package:logic_study/view/account_screen.dart';
 import 'package:logic_study/view/course_screen.dart';
 import 'package:logic_study/view/creat_account_screen.dart';
@@ -17,10 +18,17 @@ import 'package:logic_study/view/homepage_screen/temprorary_hompage_screen.dart'
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:logic_study/view/privcy_screen.dart';
 
+//niceeeeeeeeeeeeeeeeeeeeeeeeee
 void main() async {
-  DartVLC.initialize();
-  // await FlutterWindowManager.addFlags(FlutterWindowManager.FLAG_SECURE);
-  runApp(MyApp());
+  OneCoursebyId().fetchonecourse().then((value) async {
+    for (var videoId in value.courseVideos!) {
+      final videoData = await OneCoursebyId().fetchVideoById(videoId);
+      print(videoData.toString());
+    }
+  });
+  // DartVLC.initialize();
+  // // await FlutterWindowManager.addFlags(FlutterWindowManager.FLAG_SECURE);
+  // runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {

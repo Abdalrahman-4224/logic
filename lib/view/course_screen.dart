@@ -5,8 +5,8 @@ import 'package:get/get.dart';
 import 'package:logic_study/widgets/coursescreen_cards.dart';
 import 'package:logic_study/constant.dart';
 import 'package:logic_study/widgets/cards.dart';
-import 'package:logic_study/models/video_model.dart';
-import 'package:logic_study/services/video_services.dart';
+import 'package:logic_study/models/onecourse_model.dart';
+import 'package:logic_study/services/onecoursebyId_services.dart';
 import 'package:logic_study/controller/videos_controller.dart';
 
 class Course_screen extends StatelessWidget {
